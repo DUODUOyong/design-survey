@@ -297,39 +297,6 @@ textarea { resize: vertical; min-height: 60px; }
   padding: 20px 16px 40px;
   text-align: center;
 }
-.submit-method {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.submit-method label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  background: var(--white);
-  border: 1px solid var(--linen);
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
-  color: var(--mid);
-}
-.submit-method label:hover {
-  border-color: var(--tan);
-  background: rgba(210,180,140,0.1);
-}
-.submit-method input[type="radio"] {
-  accent-color: var(--sienna);
-}
-.submit-method label:has(input:checked) {
-  border-color: var(--sienna);
-  background: rgba(160,82,45,0.06);
-  color: var(--sienna);
-  font-weight: 500;
-}
 .submit-btn {
   display: inline-block;
   padding: 14px 60px;
@@ -2845,11 +2812,7 @@ textarea { resize: vertical; min-height: 60px; }
 </div><!-- end container -->
 
 <div class="submit-wrap">
-  <div class="submit-method">
-    <label><input type="radio" name="submit_method" value="email" checked> 📧 通过邮件发送</label>
-    <label><input type="radio" name="submit_method" value="pdf"> 📄 生成PDF下载</label>
-  </div>
-  <button class="submit-btn" onclick="submitForm()">提 交 问 卷</button>
+  <button class="submit-btn" onclick="submitForm()">生成PDF</button>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -2957,10 +2920,8 @@ function submitForm() {
   // Save to localStorage
   localStorage.setItem('室内设计需求调查表', JSON.stringify(data));
 
-  // Get selected submission method
-  const method = document.querySelector('input[name="submit_method"]:checked').value;
 
-  // Build formatted text content (shared by both methods)
+  // Build formatted text content
   let body = '【室内设计需求调查表】\n\n';
   const sections = {
     '一、基本情况': ['客户姓名','客户电话','建筑面积','建筑地址','常住人口_大人','常住人口_老人','常住人口_儿童','常住人口_共计','职业_女业主','职业_女业主_备注','职业_男业主','职业_男业主_备注','房屋类型','房屋交付性质','居住性质','计划开工时间','计划入住时间','住宅使用方式','其他人员身份','女业主年龄','男业主年龄','其他人员年龄','特别成员','特别成员_备注','工作性质','做饭频率','留宿频率','留宿人员','留宿人员_备注'],
@@ -3008,16 +2969,8 @@ function submitForm() {
     if (!found) body += k + '：' + v + '\n';
   }
 
-  // Branch based on selected method
-  if (method === 'pdf') {
-    generatePDF(data, body);
-  } else {
-    // Email method (original logic)
-    const subject = encodeURIComponent('室内设计需求调查表 - ' + (data['客户姓名'] || '未填写'));
-    const mailBody = encodeURIComponent(body);
-    window.location.href = 'mailto:357467320@qq.com?subject=' + subject + '&body=' + mailBody;
-    showToast('问卷已保存，正在打开邮件发送...');
-  }
+  // Generate PDF
+  generatePDF(data, body);
 }
 
 // Generate PDF
@@ -3058,93 +3011,87 @@ function generatePDF(data, bodyText) {
     '二十二、冲突取舍确认': ['冲突取消']
   };
 
-  let htmlContent = '<div style="font-family: SimHei, Microsoft YaHei, sans-serif; color: #333; line-height: 1.8; padding: 10px;">';
-  htmlContent += '<h1 style="text-align: center; font-size: 22px; color: #A0522D; border-bottom: 2px solid #A0522D; padding-bottom: 10px; margin-bottom: 20px;">室内设计需求调查表</h1>';
+  // 极简PDF HTML - 最少CSS，最快渲染
+  let h = '<div style="font-family:SimHei,Microsoft YaHei,sans-serif;color:#000;font-size:13px;line-height:1.5;padding:16px;">';
+  h += '<h1 style="text-align:center;font-size:18px;font-weight:bold;text-decoration:underline;margin:0 0 14px">室内设计需求调查表</h1>';
 
-  // Basic info summary
-  htmlContent += '<div style="margin-bottom: 16px; padding: 10px; background: #f9f6f3; border-radius: 6px;">';
-  htmlContent += '<p><strong>客户姓名：</strong>' + (data['客户姓名'] || '未填写') + '</p>';
-  htmlContent += '<p><strong>客户电话：</strong>' + (data['客户电话'] || '未填写') + '</p>';
-  htmlContent += '<p><strong>建筑面积：</strong>' + (data['建筑面积'] || '未填写') + '</p>';
-  htmlContent += '<p><strong>建筑地址：</strong>' + (data['建筑地址'] || '未填写') + '</p>';
-  htmlContent += '</div>';
+  // 基本信息表
+  h += '<table style="width:100%;border-collapse:collapse;margin-bottom:12px;font-size:12px;border:1px solid #000">';
+  h += '<tr><td style="border:1px solid #000;padding:4px 6px;font-weight:bold;width:22%">客户姓名</td><td style="border:1px solid #000;padding:4px 6px;width:28%">' + (data['\u5BA2\u6237\u59D3\u540D']||'') + '</td>';
+  h += '<td style="border:1px solid #000;padding:4px 6px;font-weight:bold;width:22%">客户电话</td><td style="border:1px solid #000;padding:4px 6px;width:28%">' + (data['\u5BA2\u6237\u7535\u8BDD']||'') + '</td></tr>';
+  h += '<tr><td style="border:1px solid #000;padding:4px 6px;font-weight:bold">建筑面积</td><td style="border:1px solid #000;padding:4px 6px">' + (data['\u5EFA\u7B51\u9762\u79EF']||'') + '</td>';
+  h += '<td style="border:1px solid #000;padding:4px 6px;font-weight:bold">建筑地址</td><td style="border:1px solid #000;padding:4px 6px">' + (data['\u5EFA\u7B51\u5730\u5740']||'') + '</td></tr>';
+  h += '</table>';
 
-  // Sections
+  // 各章节内容
   for (const [sectionName, keys] of Object.entries(sections)) {
-    let hasContent = false;
-    let sectionHtml = '';
+    let rows = [];
     for (const key of keys) {
       if (data[key]) {
-        hasContent = true;
-        // Clean up key name for display
         const displayKey = key.replace(/_/g, ' ');
-        sectionHtml += '<p style="margin: 4px 0; font-size: 13px;"><strong>' + displayKey + '：</strong>' + data[key] + '</p>';
+        rows.push({ key: displayKey, val: data[key] });
       }
     }
-    if (hasContent) {
-      htmlContent += '<div style="margin-bottom: 14px; page-break-inside: avoid;">';
-      htmlContent += '<h2 style="font-size: 15px; color: #A0522D; border-left: 3px solid #A0522D; padding-left: 8px; margin-bottom: 8px;">' + sectionName + '</h2>';
-      htmlContent += sectionHtml;
-      htmlContent += '</div>';
+    if (rows.length > 0) {
+      h += '<h2 style="font-size:13px;font-weight:bold;text-decoration:underline;margin:8px 0 4px">' + sectionName + '</h2>';
+      h += '<table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:8px">';
+      for (const row of rows) {
+        h += '<tr><td style="border:1px solid #000;padding:3px 6px;font-weight:bold;width:30%">' + row.key + '</td>';
+        h += '<td style="border:1px solid #000;padding:3px 6px">' + row.val + '</td></tr>';
+      }
+      h += '</table>';
     }
   }
 
-  // Include any keys not in sections
-  let extraHtml = '';
+  // 未在sections中的字段
+  let extraRows = [];
   for (const [k, v] of Object.entries(data)) {
     let found = false;
     for (const keys of Object.values(sections)) {
       if (keys.includes(k)) { found = true; break; }
     }
-    if (!found) {
-      extraHtml += '<p style="margin: 4px 0; font-size: 13px;"><strong>' + k + '：</strong>' + v + '</p>';
+    if (!found) { extraRows.push({ key: k, val: v }); }
+  }
+  if (extraRows.length > 0) {
+    h += '<h2 style="font-size:13px;font-weight:bold;text-decoration:underline;margin:8px 0 4px">其他信息</h2>';
+    h += '<table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:8px">';
+    for (const row of extraRows) {
+      h += '<tr><td style="border:1px solid #000;padding:3px 6px;font-weight:bold;width:30%">' + row.key + '</td>';
+      h += '<td style="border:1px solid #000;padding:3px 6px">' + row.val + '</td></tr>';
     }
-  }
-  if (extraHtml) {
-    htmlContent += '<div style="margin-bottom: 14px;">';
-    htmlContent += '<h2 style="font-size: 15px; color: #A0522D; border-left: 3px solid #A0522D; padding-left: 8px; margin-bottom: 8px;">其他信息</h2>';
-    htmlContent += extraHtml;
-    htmlContent += '</div>';
+    h += '</table>';
   }
 
-  // Footer with date and time
-  htmlContent += '<div style="margin-top: 30px; padding-top: 14px; border-top: 1px solid #ddd; text-align: right; font-size: 12px; color: #999;">';
-  htmlContent += '<p>填写日期：' + dateStr + '</p>';
-  htmlContent += '<p>填写时间：' + timeStr + '</p>';
-  htmlContent += '</div>';
+  // 页脚
+  h += '<p style="margin:16px 0 0;border-top:1px solid #000;padding-top:6px;text-align:right;font-size:11px">' + dateStr + ' ' + timeStr + '</p>';
+  h += '</div>';
 
-  htmlContent += '</div>';
-
-  // Create hidden container
+  // 创建隐藏容器
   const container = document.createElement('div');
-  container.innerHTML = htmlContent;
-  container.style.position = 'fixed';
-  container.style.left = '-9999px';
-  container.style.top = '0';
-  container.style.width = '700px';
-  container.style.background = '#fff';
+  container.innerHTML = h;
+  container.style.cssText = 'position:fixed;left:-9999px;top:0;width:720px;background:#fff';
   document.body.appendChild(container);
 
-  // File name
+  // 文件名
   const customerName = data['客户姓名'] || '未填写';
   const fileName = '设计需求调查_' + customerName + '_' + dateStr + '.pdf';
 
-  // Generate PDF
+  // 生成PDF
   const opt = {
     margin: [10, 10, 10, 10],
     filename: fileName,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true },
+    image: { type: 'jpeg', quality: 0.95 },
+    html2canvas: { scale: 2, useCORS: false, logging: false, letterRendering: false },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    pagebreak: { mode: ['css', 'legacy'] }
   };
 
   html2pdf().set(opt).from(container).save().then(function() {
     document.body.removeChild(container);
-    showToast('问卷已保存为PDF，请通过微信发送给设计师（珲哥）');
+    showToast('PDF已生成，请通过微信发送给设计师（珲哥）');
   }).catch(function(err) {
     document.body.removeChild(container);
-    showToast('PDF生成失败，请尝试使用邮件发送方式');
+    showToast('PDF生成失败，请重试');
     console.error('PDF generation error:', err);
   });
 }
