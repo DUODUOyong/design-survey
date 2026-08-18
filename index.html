@@ -345,6 +345,14 @@ textarea { resize: vertical; min-height: 60px; }
   .checkbox-grid label, .radio-grid label { font-size: 13px; padding: 5px 10px; }
   .container { padding: 8px 10px 100px; }
 }
+
+@media print {
+  body * { visibility: hidden; }
+  #pdf-overlay, #pdf-overlay * { visibility: visible; }
+  #pdf-overlay { position: absolute; left: 0; top: 0; width: 100%; padding: 10px 15px; }
+  #pdf-overlay button { display: none !important; }
+}
+
 </style>
 
 </head>
@@ -2975,31 +2983,22 @@ function submitForm() {
 
 // Generate PDF
 function generatePDF(data, bodyText) {
-  // 构建完整的HTML内容（用于新窗口）
-  let h = '<!DOCTYPE html><html><head><meta charset="UTF-8">';
-  h += '<title>设计需求调查_' + (data['客户姓名']||'未填写') + '.pdf</title>';
-  h += '<style>';
-  h += 'body{font-family:SimHei,Microsoft YaHei,Heiti SC,sans-serif;padding:20px 30px;color:#00;font-size:14px;line-height:1.8;}';
-  h += 'h1{text-align:center;font-size:22px;font-weight:bold;margin:0 0 20px;}';
-  h += 'h2{font-size:16px;font-weight:bold;margin:20px 0 10px;border-bottom:2px solid #333;padding-bottom:4px;}';
-  h += '.info-row{margin:8px 0;font-size:13px;}';
-  h += '.info-row b{margin-right:8px;}';
-  h += '.item{margin:4px 0 4px 16px;font-size:13px;}';
-  h += '@media print{body{padding:10px 15px;}}';
-  h += '</style></head><body>';
-
+  // 构建HTML内容
+  let h = '';
+  h += '<div id="pdf-preview-content" style="padding:20px 30px;color:#000;font-size:14px;line-height:1.8;">';
+  
   // 标题
-  h += '<h1>室内设计需求调查表</h1>';
-
+  h += '<h1 style="text-align:center;font-size:22px;font-weight:bold;margin:0 0 20px;">室内设计需求调查表</h1>';
+  
   // 基本信息
   h += '<div style="border:1px solid #000;padding:12px;margin-bottom:20px;">';
-  h += '<div class="info-row"><b>客户姓名：</b>' + (data['客户姓名']||'未填写') + '</div>';
-  h += '<div class="info-row"><b>客户电话：</b>' + (data['客户电话']||'未填写') + '</div>';
-  h += '<div class="info-row"><b>建筑面积：</b>' + (data['建筑面积']||'未填写') + '</div>';
-  h += '<div class="info-row"><b>建筑地址：</b>' + (data['建筑地址']||'未填写') + '</div>';
+  h += '<div style="margin:8px 0;"><b>客户姓名：</b>' + (data['客户姓名']||'未填写') + '</div>';
+  h += '<div style="margin:8px 0;"><b>客户电话：</b>' + (data['客户电话']||'未填写') + '</div>';
+  h += '<div style="margin:8px 0;"><b>建筑面积：</b>' + (data['建筑面积']||'未填写') + '</div>';
+  h += '<div style="margin:8px 0;"><b>建筑地址：</b>' + (data['建筑地址']||'未填写') + '</div>';
   h += '</div>';
-
-  // 各章节
+  
+  // 22个章节的sections对象
   const sections = {
     '一、基本情况': ['客户姓名','客户电话','建筑面积','建筑地址','常住人口_大人','常住人口_老人','常住人口_儿童','常住人口_共计','职业_女业主','职业_女业主_备注','职业_男业主','职业_男业主_备注','房屋类型','房屋交付性质','居住性质','计划开工时间','计划入住时间','住宅使用方式','其他人员身份','女业主年龄','男业主年龄','其他人员年龄','特别成员','特别成员_备注','工作性质','做饭频率','留宿频率','留宿人员','留宿人员_备注'],
     '二、特别需求': ['总体需求','特别需求_女业主','特别需求_女业主_备注','特别需求_男业主','特别需求_男业主_备注','特别需求_女性长辈','特别需求_女性长辈_备注','特别需求_男性长辈','特别需求_男性长辈_备注','特别需求_女性儿童','特别需求_女性儿童_备注','特别需求_男性儿童','特别需求_男性儿童_备注','特别需求_其他成员_备注'],
@@ -3024,7 +3023,7 @@ function generatePDF(data, bodyText) {
     '二十一、其他需求': ['风水','风水_备注','旧物沿用','旧物沿用_备注','生活习惯','家居活动','家居活动_备注','运动设备','运动设备_备注','其他设备','其他设备_备注','理想家关键词','理想周末','色彩偏好','色彩禁忌','材质偏好','材质偏好_备注','材质禁忌','材质禁忌_备注','门窗','门窗_备注','摄像头区域','其他电器','其他电器_备注','清洁工具','清洁工具_备注','居住遗憾','居住遗憾_备注'],
     '二十二、冲突取舍确认': ['冲突取消']
   };
-
+  
   for (const [sectionName, keys] of Object.entries(sections)) {
     let items = [];
     for (const key of keys) {
@@ -3034,36 +3033,41 @@ function generatePDF(data, bodyText) {
       }
     }
     if (items.length > 0) {
-      h += '<h2>' + sectionName + '</h2>';
+      h += '<h2 style="font-size:16px;font-weight:bold;margin:20px 0 10px;border-bottom:2px solid #333;padding-bottom:4px;">' + sectionName + '</h2>';
       for (const item of items) {
-        h += '<div class="item"><b>' + item.key + '：</b>' + item.val + '</div>';
+        h += '<div style="margin:4px 0 4px 16px;font-size:13px;"><b>' + item.key + '：</b>' + item.val + '</div>';
       }
     }
   }
-
-  // 页脚日期
+  
+  // 页脚
   const now = new Date();
   h += '<p style="margin-top:30px;text-align:right;font-size:12px;color:#666;">';
   h += now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0') + ' ';
   h += String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0') + '</p>';
-
-  h += '</body></html>';
-
-  // 打开新窗口并打印
-  const printWindow = window.open('', '_blank');
-  if (!printWindow) {
-    alert('请允许弹窗后重试');
-    return;
-  }
-  printWindow.document.write(h);
-  printWindow.document.close();
-
-  // 等待内容加载后打印
+  
+  h += '</div>';
+  
+  // 创建全屏预览层
+  const overlay = document.createElement('div');
+  overlay.id = 'pdf-overlay';
+  overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:9999;overflow:auto;padding:0;';
+  overlay.innerHTML = h;
+  
+  // 添加关闭按钮（非打印时可见）
+  const closeBtn = document.createElement('div');
+  closeBtn.innerHTML = '<button onclick="document.getElementById(\'pdf-overlay\').remove()" style="position:fixed;top:10px;right:10px;z-index:10000;padding:8px 16px;background:#A0522D;color:#fff;border:none;border-radius:4px;font-size:14px;cursor:pointer;">关闭预览</button>';
+  overlay.appendChild(closeBtn);
+  
+  document.body.appendChild(overlay);
+  
+  // 提示
+  showToast('请在此页面打印，选择"保存为PDF"');
+  
+  // 延迟打印
   setTimeout(function() {
-    printWindow.print();
-  }, 300);
-
-  showToast('请在弹出窗口中选择"保存为PDF"');
+    window.print();
+  }, 500);
 }
 
 // Restore from localStorage on load
