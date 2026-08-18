@@ -2,1342 +2,3009 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>室内设计需求调查表（2026年）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>室内设计需求调查表</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap');
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sienna: #A0522D;
+  --tan: #D2B48C;
+  --linen: #EAE6E1;
+  --alabaster: #F7F5F2;
+  --dark: #3E2723;
+  --mid: #5D4037;
+  --light-text: #8D6E63;
+  --white: #FFFFFF;
+  --shadow: rgba(160,82,45,0.1);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
 
-  body {
-    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(135deg, #F7F5F2 0%, #EAE6E1 100%);
-    color: #4A413A;
-    line-height: 1.65;
-    min-height: 100vh;
-    padding: 20px;
-  }
+* { margin:0; padding:0; box-sizing:border-box; }
 
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    background: #FFFFFF;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(74, 65, 58, 0.1);
-    overflow: hidden;
-  }
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: var(--alabaster);
+  color: var(--dark);
+  line-height: 1.6;
+  min-height: 100vh;
+}
 
-  /* Header */
-  .header {
-    background: linear-gradient(135deg, #A0522D 0%, #D2B48C 100%);
-    color: #FFFFFF;
-    padding: 56px 40px 48px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .header::before {
-    content: '';
-    position: absolute;
-    top: -40px; right: -40px;
-    width: 200px; height: 200px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 50%;
-  }
-  .header h1 {
-    font-family: 'Noto Serif SC', serif;
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin-bottom: 10px;
-  }
-  .header .sub {
-    font-size: 14px;
-    opacity: 0.95;
-    letter-spacing: 1px;
-  }
-  .header .logo {
-    display: inline-block;
-    padding: 4px 14px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 20px;
-    font-size: 12px;
-    margin-top: 12px;
-    letter-spacing: 2px;
-  }
+.header {
+  background: linear-gradient(135deg, var(--sienna) 0%, #C4724A 100%);
+  color: var(--white);
+  padding: 32px 20px 28px;
+  text-align: center;
+  position: relative;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 0; right: 0;
+  height: 20px;
+  background: var(--alabaster);
+  border-radius: 20px 20px 0 0;
+}
+.header h1 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+.header p {
+  font-size: 14px;
+  opacity: 0.85;
+  letter-spacing: 4px;
+}
 
-  /* Progress bar */
-  .progress-wrap {
-    position: sticky;
-    top: 0;
-    background: #FFFFFF;
-    padding: 12px 40px;
-    border-bottom: 1px solid #EAE6E1;
-    z-index: 10;
-  }
-  .progress-bar {
-    height: 4px;
-    background: #EAE6E1;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #A0522D, #D2B48C);
-    width: 0%;
-    transition: width 0.3s;
-  }
-  .progress-text {
-    text-align: right;
-    font-size: 12px;
-    color: #7D746B;
-    margin-top: 4px;
-  }
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  padding: 10px 20px;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--linen);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sienna), var(--tan));
+  border-radius: 4px;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+.progress-text {
+  text-align: center;
+  font-size: 12px;
+  color: var(--light-text);
+  margin-top: 4px;
+}
 
-  /* Sections */
-  .form-body { padding: 8px 40px 20px; }
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 8px 16px 100px;
+}
 
-  .section {
-    margin: 32px 0;
-    padding: 28px 28px 20px;
-    background: #FDFCFB;
-    border-radius: 12px;
-    border: 1px solid #EAE6E1;
-  }
+.module {
+  margin-bottom: 16px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 12px var(--shadow);
+  overflow: hidden;
+}
 
-  .section-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    margin-bottom: 20px;
-    user-select: none;
-  }
-  .section-title {
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    font-weight: 700;
-    color: #A0522D;
-    font-family: 'Noto Serif SC', serif;
-  }
-  .section-num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px; height: 32px;
-    background: #A0522D;
-    color: #FFFFFF;
-    border-radius: 50%;
-    font-size: 14px;
-    font-weight: 700;
-    margin-right: 12px;
-  }
-  .toggle-icon {
-    font-size: 20px;
-    color: #A0522D;
-    transition: transform 0.3s;
-  }
-  .section.collapsed .section-content { display: none; }
-  .section.collapsed .toggle-icon { transform: rotate(-90deg); }
+.module-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, var(--linen) 0%, var(--alabaster) 100%);
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid rgba(160,82,45,0.08);
+}
+.module-header h2 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--sienna);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.module-header h2::before {
+  content: '';
+  width: 4px;
+  height: 18px;
+  background: var(--sienna);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.module-header .arrow {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s;
+  color: var(--sienna);
+}
+.module-header .arrow.collapsed {
+  transform: rotate(-90deg);
+}
 
-  .section-content { margin-top: 4px; }
+.module-body {
+  padding: 16px 20px;
+  display: block;
+}
+.module-body.hidden {
+  display: none;
+}
 
-  /* Field */
-  .field { margin-bottom: 18px; }
-  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .field-label {
-    display: block;
-    font-size: 14px;
-    font-weight: 500;
-    color: #4A413A;
-    margin-bottom: 8px;
-  }
-  .required { color: #C62828; margin-left: 4px; }
+.section {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed rgba(160,82,45,0.12);
+}
+.section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
 
-  input[type="text"],
-  input[type="tel"],
-  input[type="number"],
-  input[type="date"],
-  input[type="email"],
-  textarea,
-  select {
-    width: 100%;
-    padding: 10px 14px;
-    font-size: 14px;
-    font-family: inherit;
-    color: #4A413A;
-    background: #FFFFFF;
-    border: 1px solid #DCD3C9;
-    border-radius: 8px;
-    transition: all 0.2s;
-  }
-  input:focus, textarea:focus, select:focus {
-    outline: none;
-    border-color: #A0522D;
-    box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.1);
-  }
-  textarea { resize: vertical; min-height: 80px; }
+.question {
+  margin-bottom: 16px;
+}
+.question:last-child {
+  margin-bottom: 0;
+}
 
-  .sub-label {
-    font-size: 13px;
-    color: #7D746B;
-    margin: 12px 0 6px;
-    padding-left: 8px;
-    border-left: 3px solid #D2B48C;
-  }
+.q-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--mid);
+  margin-bottom: 8px;
+  display: block;
+}
 
-  /* Checkbox group */
-  .check-group {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 8px;
-  }
-  .check-group.tight { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
-  .check-group.wide { grid-template-columns: 1fr; }
+.q-sub-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--light-text);
+  margin: 8px 0 6px;
+  display: block;
+}
 
-  .check-item {
-    display: flex;
-    align-items: center;
-    padding: 9px 12px;
-    background: #FFFFFF;
-    border: 1px solid #DCD3C9;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 13.5px;
-  }
-  .check-item:hover {
-    background: #F7F5F2;
-    border-color: #A0522D;
-  }
-  .check-item input {
-    margin-right: 8px;
-    accent-color: #A0522D;
-    width: 15px; height: 15px;
-  }
-  .check-item.checked {
-    background: rgba(160, 82, 45, 0.08);
-    border-color: #A0522D;
-    color: #A0522D;
-    font-weight: 500;
-  }
+.checkbox-grid, .radio-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
-  .field-note {
-    font-size: 12px;
-    color: #7D746B;
-    margin-top: 4px;
-    font-style: italic;
-  }
+.checkbox-grid label, .radio-grid label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--alabaster);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1.4;
+}
+.checkbox-grid label:hover, .radio-grid label:hover {
+  border-color: var(--tan);
+  background: rgba(210,180,140,0.15);
+}
+.checkbox-grid input:checked + span, .radio-grid input:checked + span {
+  color: var(--sienna);
+  font-weight: 500;
+}
+.checkbox-grid label:has(input:checked), .radio-grid label:has(input:checked) {
+  border-color: var(--sienna);
+  background: rgba(160,82,45,0.06);
+}
 
-  /* Radio inline */
-  .radio-row { display: flex; flex-wrap: wrap; gap: 8px; }
+input[type="checkbox"], input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--sienna);
+  flex-shrink: 0;
+}
 
-  /* VS grid */
-  .vs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
-  }
-  .vs-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 12px;
-    background: #FFFFFF;
-    border: 1px solid #DCD3C9;
-    border-radius: 8px;
-    font-size: 13px;
-  }
-  .vs-item select {
-    width: auto;
-    padding: 4px 8px;
-    font-size: 13px;
-  }
+input[type="text"], input[type="tel"], input[type="number"], input[type="date"], textarea, select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--linen);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-family: 'Noto Sans SC', sans-serif;
+  background: var(--alabaster);
+  color: var(--dark);
+  transition: border-color 0.2s;
+  outline: none;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--tan);
+  box-shadow: 0 0 0 3px rgba(210,180,140,0.2);
+}
+textarea { resize: vertical; min-height: 60px; }
 
-  /* Number inputs */
-  .num-inline {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .num-inline input {
-    width: 70px;
-    text-align: center;
-  }
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
 
-  /* Submit */
-  .submit-section {
-    padding: 32px 40px 48px;
-    background: linear-gradient(to bottom, #F7F5F2, #EAE6E1);
-    text-align: center;
-  }
-  .submit-btn {
-    background: linear-gradient(135deg, #A0522D 0%, #D2B48C 100%);
-    color: #FFFFFF;
-    border: none;
-    padding: 16px 72px;
-    font-size: 16px;
-    font-weight: 700;
-    border-radius: 50px;
-    cursor: pointer;
-    letter-spacing: 3px;
-    box-shadow: 0 8px 24px rgba(160, 82, 45, 0.3);
-    transition: all 0.3s;
-    font-family: inherit;
-  }
-  .submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(160, 82, 45, 0.4);
-  }
-  .submit-note {
-    font-size: 13px;
-    color: #7D746B;
-    margin-top: 16px;
-  }
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
 
-  /* Modal */
-  .modal {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(74, 65, 58, 0.5);
-    z-index: 999;
-    align-items: center;
-    justify-content: center;
-  }
-  .modal.show { display: flex; }
-  .modal-box {
-    background: #FFFFFF;
-    border-radius: 16px;
-    padding: 40px;
-    max-width: 420px;
-    text-align: center;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-  }
-  .modal-icon {
-    width: 64px; height: 64px;
-    background: #A0522D;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    color: #FFFFFF;
-    font-size: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .modal-box h2 {
-    font-family: 'Noto Serif SC', serif;
-    color: #4A413A;
-    margin-bottom: 10px;
-  }
-  .modal-box p { color: #7D746B; margin-bottom: 24px; font-size: 14px; }
-  .modal-btn {
-    background: #A0522D;
-    color: #FFFFFF;
-    border: none;
-    padding: 10px 36px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 14px;
-  }
+.four-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 8px;
+}
 
-  @media (max-width: 640px) {
-    body { padding: 8px; }
-    .header { padding: 36px 20px; }
-    .header h1 { font-size: 22px; letter-spacing: 2px; }
-    .form-body { padding: 8px 16px 16px; }
-    .section { padding: 20px 16px 12px; margin: 20px 0; }
-    .section-title { font-size: 16px; }
-    .field-row { grid-template-columns: 1fr; }
-    .check-group { grid-template-columns: 1fr 1fr; }
-    .check-group.tight { grid-template-columns: 1fr 1fr; }
-    .submit-section { padding: 24px 16px 32px; }
-    .submit-btn { padding: 14px 48px; font-size: 15px; }
-    .progress-wrap { padding: 10px 16px; }
-  }
+.vs-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  flex-wrap: wrap;
+}
+.vs-row .vs-label {
+  font-size: 14px;
+  min-width: 80px;
+  text-align: center;
+  color: var(--mid);
+}
+.vs-row .vs-text {
+  font-size: 13px;
+  color: var(--light-text);
+  flex: 1;
+  text-align: center;
+}
+.vs-row select {
+  width: 60px;
+  padding: 4px 8px;
+  text-align: center;
+}
 
-  @media print {
-    .progress-wrap, .submit-section { display: none; }
-    .section { break-inside: avoid; border: 1px solid #ccc; }
-    .section.collapsed .section-content { display: block !important; }
-  }
+.sub-section {
+  background: var(--alabaster);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-top: 8px;
+}
+
+.remark-input {
+  margin-top: 6px;
+}
+
+.submit-wrap {
+  padding: 20px 16px 40px;
+  text-align: center;
+}
+.submit-btn {
+  display: inline-block;
+  padding: 14px 60px;
+  background: linear-gradient(135deg, var(--sienna) 0%, #C4724A 100%);
+  color: var(--white);
+  border: none;
+  border-radius: 30px;
+  font-size: 17px;
+  font-weight: 500;
+  font-family: 'Noto Serif SC', serif;
+  letter-spacing: 4px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(160,82,45,0.3);
+  transition: all 0.3s;
+}
+.submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(160,82,45,0.4);
+}
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(62,39,35,0.9);
+  color: white;
+  padding: 16px 32px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  z-index: 9999;
+  display: none;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .header h1 { font-size: 22px; }
+  .module-body { padding: 12px 14px; }
+  .module-header { padding: 14px 16px; }
+  .two-col { grid-template-columns: 1fr; }
+  .three-col { grid-template-columns: 1fr; }
+  .four-col { grid-template-columns: 1fr 1fr; }
+  .checkbox-grid label, .radio-grid label { font-size: 13px; padding: 5px 10px; }
+  .container { padding: 8px 10px 100px; }
+}
 </style>
 </head>
 <body>
 
+<div class="header">
+  <h1>室内设计需求调查表</h1>
+  <p>专业定制 · 从了解你开始</p>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-text" id="progressText">填写进度：0%</div>
+</div>
+
 <div class="container">
-  <div class="header">
-    <h1>室内设计需求调查表</h1>
-    <p class="sub">专业定制 · 从了解你开始</p>
-    <div class="logo">2026 年度版</div>
-  </div>
 
-  <div class="progress-wrap">
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="progress-text" id="progressText">0% 已填写</div>
-  </div>
-
-  <form id="surveyForm" class="form-body">
-
-    <!-- 1. 基本情况 -->
-    <div class="section">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-title"><span class="section-num">1</span>基本情况</div>
-        <span class="toggle-icon">▼</span>
-      </div>
-      <div class="section-content">
-
-        <div class="field-row">
-          <div class="field">
-            <label class="field-label">客户姓名<span class="required">*</span></label>
-            <input type="text" name="name" required>
-          </div>
-          <div class="field">
-            <label class="field-label">客户电话<span class="required">*</span></label>
-            <input type="tel" name="phone" required>
-          </div>
-        </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label class="field-label">建筑面积（㎡）<span class="required">*</span></label>
-            <input type="number" name="area" required>
-          </div>
-          <div class="field">
-            <label class="field-label">建筑地址<span class="required">*</span></label>
-            <input type="text" name="address" required placeholder="如：柳州·柳江区某某小区">
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">家庭常住人口</label>
-          <div class="num-inline">
-            大人 <input type="number" name="adult_count" min="0" value="0"> 人
-            老人 <input type="number" name="elderly_count" min="0" value="0"> 人
-            儿童 <input type="number" name="child_count" min="0" value="0"> 人
-            共计 <input type="number" name="total_count" min="0" value="0" readonly> 人
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">职业身份</label>
-          <div class="sub-label">女业主</div>
-          <div class="check-group" id="jobFemale">
-            <label class="check-item"><input type="checkbox" name="job_female" value="经商">经商</label>
-            <label class="check-item"><input type="checkbox" name="job_female" value="公务员">公务员</label>
-            <label class="check-item"><input type="checkbox" name="job_female" value="医生">医生</label>
-            <label class="check-item"><input type="checkbox" name="job_female" value="教师">教师</label>
-            <label class="check-item"><input type="checkbox" name="job_female" value="艺术从业者">艺术从业者</label>
-            <label class="check-item"><input type="checkbox" name="job_female" value="自由职业者">自由职业者</label>
-            <label class="check-item"><input type="checkbox" name="job_female" value="其他">其他</label>
-          </div>
-          <input type="text" name="job_female_remark" placeholder="备注（选填）" style="margin-top:8px;">
-
-          <div class="sub-label" style="margin-top:16px;">男业主</div>
-          <div class="check-group" id="jobMale">
-            <label class="check-item"><input type="checkbox" name="job_male" value="经商">经商</label>
-            <label class="check-item"><input type="checkbox" name="job_male" value="公务员">公务员</label>
-            <label class="check-item"><input type="checkbox" name="job_male" value="医生">医生</label>
-            <label class="check-item"><input type="checkbox" name="job_male" value="教师">教师</label>
-            <label class="check-item"><input type="checkbox" name="job_male" value="艺术从业者">艺术从业者</label>
-            <label class="check-item"><input type="checkbox" name="job_male" value="自由职业者">自由职业者</label>
-            <label class="check-item"><input type="checkbox" name="job_male" value="其他">其他</label>
-          </div>
-          <input type="text" name="job_male_remark" placeholder="备注（选填）" style="margin-top:8px;">
-        </div>
-
-        <div class="field">
-          <label class="field-label">房屋类型</label>
-          <div class="check-group" id="houseType">
-            <label class="check-item"><input type="checkbox" name="house_type" value="平层">平层</label>
-            <label class="check-item"><input type="checkbox" name="house_type" value="平层大宅">平层大宅</label>
-            <label class="check-item"><input type="checkbox" name="house_type" value="自建房">自建房</label>
-            <label class="check-item"><input type="checkbox" name="house_type" value="商住公寓">商住公寓</label>
-            <label class="check-item"><input type="checkbox" name="house_type" value="别墅">别墅</label>
-            <label class="check-item"><input type="checkbox" name="house_type" value="洋房">洋房</label>
-            <label class="check-item"><input type="checkbox" name="house_type" value="其他">其他</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">房屋交付性质</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="delivery" value="毛坯房">毛坯房</label>
-            <label class="check-item"><input type="checkbox" name="delivery" value="精装房">精装房</label>
-            <label class="check-item"><input type="checkbox" name="delivery" value="旧房改造">旧房改造</label>
-            <label class="check-item"><input type="checkbox" name="delivery" value="节能型被动房">节能型被动房</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">居住性质</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="live_type" value="刚需房">刚需房</label>
-            <label class="check-item"><input type="checkbox" name="live_type" value="改善房">改善房</label>
-            <label class="check-item"><input type="checkbox" name="live_type" value="度假房">度假房</label>
-          </div>
-        </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label class="field-label">计划开工时间</label>
-            <input type="date" name="start_date">
-          </div>
-          <div class="field">
-            <label class="field-label">计划入住时间</label>
-            <input type="date" name="movein_date">
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">住宅使用方式</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="usage" value="常年居住">常年居住</label>
-            <label class="check-item"><input type="checkbox" name="usage" value="度假居住">度假居住</label>
-            <label class="check-item"><input type="checkbox" name="usage" value="投资、搁置、出租">投资、搁置、出租</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">其他家庭成员</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="family_member" value="男性长辈">男性长辈</label>
-            <label class="check-item"><input type="checkbox" name="family_member" value="女性长辈">女性长辈</label>
-            <label class="check-item"><input type="checkbox" name="family_member" value="男孩">男孩</label>
-            <label class="check-item"><input type="checkbox" name="family_member" value="女孩">女孩</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">业主年龄</label>
-          <div class="sub-label">女业主</div>
-          <div class="radio-row">
-            <label class="check-item"><input type="radio" name="female_age" value="22~28">22~28</label>
-            <label class="check-item"><input type="radio" name="female_age" value="29~36">29~36</label>
-            <label class="check-item"><input type="radio" name="female_age" value="37以上">37以上</label>
-          </div>
-          <div class="sub-label" style="margin-top:12px;">男业主</div>
-          <div class="radio-row">
-            <label class="check-item"><input type="radio" name="male_age" value="22~28">22~28</label>
-            <label class="check-item"><input type="radio" name="male_age" value="29~36">29~36</label>
-            <label class="check-item"><input type="radio" name="male_age" value="37以上">37以上</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">其他人员年龄</label>
-          <div class="sub-label">长辈</div>
-          <label class="check-item"><input type="checkbox" name="elderly_age" value="60岁以上">60岁以上</label>
-          <div class="sub-label" style="margin-top:12px;">儿童</div>
-          <div class="radio-row">
-            <label class="check-item"><input type="radio" name="child_age" value="0-5岁">0-5岁</label>
-            <label class="check-item"><input type="radio" name="child_age" value="6-12岁">6-12岁</label>
-            <label class="check-item"><input type="radio" name="child_age" value="13-18岁">13-18岁</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">特别成员（宠物等）</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="pet" value="无">无</label>
-            <label class="check-item"><input type="checkbox" name="pet" value="猫">🐱 猫</label>
-            <label class="check-item"><input type="checkbox" name="pet" value="狗">🐶 狗</label>
-            <label class="check-item"><input type="checkbox" name="pet" value="鱼">🐟 鱼</label>
-            <label class="check-item"><input type="checkbox" name="pet" value="鸟">🐦 鸟</label>
-            <label class="check-item"><input type="checkbox" name="pet" value="其他">其他</label>
-          </div>
-          <input type="text" name="pet_remark" placeholder="备注（选填）" style="margin-top:8px;">
-        </div>
-
-        <div class="field">
-          <label class="field-label">工作性质</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="work_style" value="常居家办公">常居家办公</label>
-            <label class="check-item"><input type="checkbox" name="work_style" value="经常出差">经常出差</label>
-            <label class="check-item"><input type="checkbox" name="work_style" value="早出晚归">早出晚归</label>
-            <label class="check-item"><input type="checkbox" name="work_style" value="早出早归">早出早归</label>
-            <label class="check-item"><input type="checkbox" name="work_style" value="晚出晚归">晚出晚归</label>
-            <label class="check-item"><input type="checkbox" name="work_style" value="早中晚在家">早中晚在家</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">做饭频率</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="cook_freq" value="高频：每日做饭">高频：每日做饭</label>
-            <label class="check-item"><input type="checkbox" name="cook_freq" value="中频：工作日简餐 周末正餐 每周1-3次">中频：工作日简餐 周末正餐 每周1-3次</label>
-            <label class="check-item"><input type="checkbox" name="cook_freq" value="低频：仅周末、节假日聚餐开火">低频：仅周末、节假日聚餐开火</label>
-            <label class="check-item"><input type="checkbox" name="cook_freq" value="基本不开火">基本不开火</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">留宿频率</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="guest_freq" value="高频：每月≥5次">高频：每月≥5次</label>
-            <label class="check-item"><input type="checkbox" name="guest_freq" value="中频：每月≥2-3次">中频：每月≥2-3次</label>
-            <label class="check-item"><input type="checkbox" name="guest_freq" value="低频：一年数次 逢年过节">低频：一年数次 逢年过节</label>
-            <label class="check-item"><input type="checkbox" name="guest_freq" value="无留宿">无留宿</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">留宿人员（可多选）</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="guest_type" value="长辈父母">长辈父母</label>
-            <label class="check-item"><input type="checkbox" name="guest_type" value="同辈亲友">同辈亲友</label>
-            <label class="check-item"><input type="checkbox" name="guest_type" value="同龄好友">同龄好友</label>
-            <label class="check-item"><input type="checkbox" name="guest_type" value="孩童/亲戚小孩">孩童/亲戚小孩</label>
-            <label class="check-item"><input type="checkbox" name="guest_type" value="无外来留宿人员">无外来留宿人员</label>
-          </div>
-          <input type="text" name="guest_remark" placeholder="备注（选填）" style="margin-top:8px;">
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 2. 特别需求 -->
-    <div class="section">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-title"><span class="section-num">2</span>特别需求</div>
-        <span class="toggle-icon">▼</span>
-      </div>
-      <div class="section-content">
-
-        <div class="sub-label">总体需求</div>
-        <div class="check-group">
-          <label class="check-item"><input type="checkbox" name="hobby" value="看书">看书</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="喝茶">喝茶</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="观影">观影</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="打游戏">打游戏</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="收藏手办/潮玩/古玩">收藏手办/潮玩/古玩</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="弹奏乐器">弹奏乐器</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="居家健身">居家健身</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="垂钓/户外露营">垂钓/户外露营</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="养花绿植">养花绿植</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="烘焙做饭">烘焙做饭</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="书法绘画">书法绘画</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="手工">手工</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="品酒">品酒</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="棋牌娱乐">棋牌娱乐</label>
-          <label class="check-item"><input type="checkbox" name="hobby" value="摄影">摄影</label>
-        </div>
-
-        <div class="sub-label" style="margin-top:16px;">女业主特别需求</div>
-        <div class="check-group">
-          <label class="check-item"><input type="checkbox" name="female_need" value="化妆美妆">化妆美妆</label>
-          <label class="check-item"><input type="checkbox" name="female_need" value="穿搭衣物打理">穿搭衣物打理</label>
-          <label class="check-item"><input type="checkbox" name="female_need" value="居家办公">居家办公</label>
-          <label class="check-item"><input type="checkbox" name="female_need" value="畏光畏寒畏风">畏光畏寒畏风</label>
-          <label class="check-item"><input type="checkbox" name="female_need" value="其他">其他</label>
-        </div>
-        <input type="text" name="female_need_remark" placeholder="备注" style="margin-top:8px;">
-
-        <div class="sub-label" style="margin-top:16px;">男业主特别需求</div>
-        <div class="check-group">
-          <label class="check-item"><input type="checkbox" name="male_need" value="居家办公">居家办公</label>
-          <label class="check-item"><input type="checkbox" name="male_need" value="抽烟">抽烟</label>
-          <label class="check-item"><input type="checkbox" name="male_need" value="畏光畏寒畏风">畏光畏寒畏风</label>
-          <label class="check-item"><input type="checkbox" name="male_need" value="其他">其他</label>
-        </div>
-        <input type="text" name="male_need_remark" placeholder="备注" style="margin-top:8px;">
-
-        <div class="sub-label" style="margin-top:16px;">女性长辈特别需求</div>
-        <div class="check-group">
-          <label class="check-item"><input type="checkbox" name="fe_elder_need" value="低矮便捷柜体">低矮便捷柜体</label>
-          <label class="check-item"><input type="checkbox" name="fe_elder_need" value="浴室扶手">浴室扶手</label>
-          <label class="check-item"><input type="checkbox" name="fe_elder_need" value="衣物/饰品收纳">衣物/饰品收纳</label>
-          <label class="check-item"><input type="checkbox" name="fe_elder_need" value="畏光畏寒畏风">畏光畏寒畏风</label>
-          <label class="check-item"><input type="checkbox" name="fe_elder_need" value="其他">其他</label>
-        </div>
-        <input type="text" name="fe_elder_need_remark" placeholder="备注" style="margin-top:8px;">
-
-        <div class="sub-label" style="margin-top:16px;">男性长辈特别需求</div>
-        <div class="check-group">
-          <label class="check-item"><input type="checkbox" name="ma_elder_need" value="低矮便捷柜体">低矮便捷柜体</label>
-          <label class="check-item"><input type="checkbox" name="ma_elder_need" value="浴室扶手">浴室扶手</label>
-          <label class="check-item"><input type="checkbox" name="ma_elder_need" value="收纳">收纳</label>
-          <label class="check-item"><input type="checkbox" name="ma_elder_need" value="畏光畏寒畏风">畏光畏寒畏风</label>
-          <label class="check-item"><input type="checkbox" name="ma_elder_need" value="其他">其他</label>
-        </div>
-        <input type="text" name="ma_elder_need_remark" placeholder="备注" style="margin-top:8px;">
-
-        <div class="sub-label" style="margin-top:16px;">女性儿童特别需求</div>
-        <div class="check-group">
-          <label class="check-item"><input type="checkbox" name="girl_need" value="收纳衣物">收纳衣物</label>
-          <label class="check-item"><input type="checkbox" name="girl_need" value="收纳玩具">收纳玩具</label>
-          <label class="check-item"><input type="checkbox" name="girl_need" value="收纳书本">收纳书本</label>
-          <label class="check-item"><input type="checkbox" name="girl_need" value="学习工位">学习工位</label>
-          <label class="check-item"><input type="checkbox" name="girl_need" value="睡眠遮光">睡眠遮光</label>
-          <label class="check-item"><input type="checkbox" name="girl_need" value="弹奏乐器">弹奏乐器</label>
-          <label class="check-item"><input type="checkbox" name="girl_need" value="安全细节处理">安全细节处理</label>
-          <label class="check-item"><input type="checkbox" name="girl_need" value="梳妆台面">梳妆台面</label>
-          <label class="check-item"><input type="checkbox" name="girl_need" value="畏光畏寒畏风">畏光畏寒畏风</label>
-          <label class="check-item"><input type="checkbox" name="girl_need" value="其他">其他</label>
-        </div>
-        <input type="text" name="girl_need_remark" placeholder="备注" style="margin-top:8px;">
-
-        <div class="sub-label" style="margin-top:16px;">男性儿童特别需求</div>
-        <div class="check-group">
-          <label class="check-item"><input type="checkbox" name="boy_need" value="收纳衣物">收纳衣物</label>
-          <label class="check-item"><input type="checkbox" name="boy_need" value="收纳玩具">收纳玩具</label>
-          <label class="check-item"><input type="checkbox" name="boy_need" value="收纳书本">收纳书本</label>
-          <label class="check-item"><input type="checkbox" name="boy_need" value="学习工位">学习工位</label>
-          <label class="check-item"><input type="checkbox" name="boy_need" value="睡眠遮光">睡眠遮光</label>
-          <label class="check-item"><input type="checkbox" name="boy_need" value="弹奏乐器">弹奏乐器</label>
-          <label class="check-item"><input type="checkbox" name="boy_need" value="安全细节处理">安全细节处理</label>
-          <label class="check-item"><input type="checkbox" name="boy_need" value="畏光畏寒畏风">畏光畏寒畏风</label>
-          <label class="check-item"><input type="checkbox" name="boy_need" value="其他">其他</label>
-        </div>
-        <input type="text" name="boy_need_remark" placeholder="备注" style="margin-top:8px;">
-
-        <div class="sub-label" style="margin-top:16px;">其他成员</div>
-        <input type="text" name="other_member_remark" placeholder="备注">
-
-      </div>
-    </div>
-
-    <!-- 3. 空间规划 -->
-    <div class="section">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-title"><span class="section-num">3</span>空间规划</div>
-        <span class="toggle-icon">▼</span>
-      </div>
-      <div class="section-content">
-        <div class="field-label">请选择需要设计的空间（可多选）</div>
-        <div class="check-group">
-          <label class="check-item"><input type="checkbox" name="space" value="主卧">主卧</label>
-          <label class="check-item"><input type="checkbox" name="space" value="次卧">次卧</label>
-          <label class="check-item"><input type="checkbox" name="space" value="客房">客房</label>
-          <label class="check-item"><input type="checkbox" name="space" value="主卫">主卫</label>
-          <label class="check-item"><input type="checkbox" name="space" value="次卫">次卫</label>
-          <label class="check-item"><input type="checkbox" name="space" value="衣帽间">衣帽间</label>
-          <label class="check-item"><input type="checkbox" name="space" value="长辈房">长辈房</label>
-          <label class="check-item"><input type="checkbox" name="space" value="儿童房">儿童房</label>
-          <label class="check-item"><input type="checkbox" name="space" value="男孩房">男孩房</label>
-          <label class="check-item"><input type="checkbox" name="space" value="女孩房">女孩房</label>
-          <label class="check-item"><input type="checkbox" name="space" value="书房">书房</label>
-          <label class="check-item"><input type="checkbox" name="space" value="电竞房">电竞房</label>
-          <label class="check-item"><input type="checkbox" name="space" value="茶室">茶室</label>
-          <label class="check-item"><input type="checkbox" name="space" value="健身房">健身房</label>
-          <label class="check-item"><input type="checkbox" name="space" value="保姆房">保姆房</label>
-          <label class="check-item"><input type="checkbox" name="space" value="景观阳台">景观阳台</label>
-          <label class="check-item"><input type="checkbox" name="space" value="生活阳台">生活阳台</label>
-          <label class="check-item"><input type="checkbox" name="space" value="洗衣房">洗衣房</label>
-          <label class="check-item"><input type="checkbox" name="space" value="晾晒房">晾晒房</label>
-          <label class="check-item"><input type="checkbox" name="space" value="储物间">储物间</label>
-          <label class="check-item"><input type="checkbox" name="space" value="其他">其他空间需求</label>
-        </div>
-        <input type="text" name="space_remark" placeholder="其他空间需求备注" style="margin-top:8px;">
-      </div>
-    </div>
-
-    <!-- 4. 设计风格 -->
-    <div class="section">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-title"><span class="section-num">4</span>设计风格</div>
-        <span class="toggle-icon">▼</span>
-      </div>
-      <div class="section-content">
-
-        <div class="field">
-          <label class="field-label">偏好的设计风格（可多选）</label>
-          <div class="check-group tight" id="styleGroup">
-            <label class="check-item"><input type="checkbox" name="style" value="现代简约">现代简约</label>
-            <label class="check-item"><input type="checkbox" name="style" value="南洋复古">南洋复古</label>
-            <label class="check-item"><input type="checkbox" name="style" value="原木">原木</label>
-            <label class="check-item"><input type="checkbox" name="style" value="新中式">新中式</label>
-            <label class="check-item"><input type="checkbox" name="style" value="宋氏美学">宋氏美学</label>
-            <label class="check-item"><input type="checkbox" name="style" value="波西米亚">波西米亚</label>
-            <label class="check-item"><input type="checkbox" name="style" value="奶油">奶油</label>
-            <label class="check-item"><input type="checkbox" name="style" value="多巴胺">多巴胺</label>
-            <label class="check-item"><input type="checkbox" name="style" value="意式轻奢">意式轻奢</label>
-            <label class="check-item"><input type="checkbox" name="style" value="折衷主义">折衷主义</label>
-            <label class="check-item"><input type="checkbox" name="style" value="中古">中古</label>
-            <label class="check-item"><input type="checkbox" name="style" value="轻法式">轻法式</label>
-            <label class="check-item"><input type="checkbox" name="style" value="意式极简">意式极简</label>
-            <label class="check-item"><input type="checkbox" name="style" value="中式">中式</label>
-            <label class="check-item"><input type="checkbox" name="style" value="包豪斯">包豪斯</label>
-            <label class="check-item"><input type="checkbox" name="style" value="现代美式">现代美式</label>
-            <label class="check-item"><input type="checkbox" name="style" value="地中海">地中海</label>
-            <label class="check-item"><input type="checkbox" name="style" value="北欧">北欧</label>
-            <label class="check-item"><input type="checkbox" name="style" value="自然系">自然系</label>
-            <label class="check-item"><input type="checkbox" name="style" value="美式乡村">美式乡村</label>
-            <label class="check-item"><input type="checkbox" name="style" value="工业">工业</label>
-            <label class="check-item"><input type="checkbox" name="style" value="摩洛哥">摩洛哥</label>
-            <label class="check-item"><input type="checkbox" name="style" value="托斯卡纳">托斯卡纳</label>
-            <label class="check-item"><input type="checkbox" name="style" value="混搭">混搭</label>
-            <label class="check-item"><input type="checkbox" name="style" value="法式">法式</label>
-            <label class="check-item"><input type="checkbox" name="style" value="东南亚">东南亚</label>
-            <label class="check-item"><input type="checkbox" name="style" value="韩系海盐">韩系海盐</label>
-            <label class="check-item"><input type="checkbox" name="style" value="暗黑">暗黑</label>
-            <label class="check-item"><input type="checkbox" name="style" value="日式">日式</label>
-            <label class="check-item"><input type="checkbox" name="style" value="阿尔托">阿尔托</label>
-            <label class="check-item"><input type="checkbox" name="style" value="黑白灰极简">黑白灰极简</label>
-            <label class="check-item"><input type="checkbox" name="style" value="老钱">老钱</label>
-            <label class="check-item"><input type="checkbox" name="style" value="美式">美式</label>
-            <label class="check-item"><input type="checkbox" name="style" value="新古典">新古典</label>
-            <label class="check-item"><input type="checkbox" name="style" value="田园">田园</label>
-            <label class="check-item"><input type="checkbox" name="style" value="侘寂">侘寂</label>
-            <label class="check-item"><input type="checkbox" name="style" value="欧式">欧式</label>
-            <label class="check-item"><input type="checkbox" name="style" value="ART DECO">ART DECO</label>
-            <label class="check-item"><input type="checkbox" name="style" value="其他">其他风格</label>
-          </div>
-          <input type="text" name="style_remark" placeholder="其他风格备注" style="margin-top:8px;">
-        </div>
-
-        <div class="field">
-          <label class="field-label">色彩感觉</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="color" value="黑白灰冷色">黑白灰冷色</label>
-            <label class="check-item"><input type="checkbox" name="color" value="纯白极简">纯白极简</label>
-            <label class="check-item"><input type="checkbox" name="color" value="温馨木色">温馨木色</label>
-            <label class="check-item"><input type="checkbox" name="color" value="美拉德色系">美拉德色系</label>
-            <label class="check-item"><input type="checkbox" name="color" value="马卡龙色系">马卡龙色系</label>
-            <label class="check-item"><input type="checkbox" name="color" value="其他">其他</label>
-          </div>
-          <input type="text" name="color_remark" placeholder="备注" style="margin-top:8px;">
-        </div>
-
-        <div class="field">
-          <label class="field-label">整体氛围</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="mood" value="温馨治愈">温馨治愈</label>
-            <label class="check-item"><input type="checkbox" name="mood" value="简洁利落">简洁利落</label>
-            <label class="check-item"><input type="checkbox" name="mood" value="沉稳大气">沉稳大气</label>
-            <label class="check-item"><input type="checkbox" name="mood" value="活泼有趣">活泼有趣</label>
-            <label class="check-item"><input type="checkbox" name="mood" value="艺术感强">艺术感强</label>
-            <label class="check-item"><input type="checkbox" name="mood" value="其他">其他</label>
-          </div>
-          <input type="text" name="mood_remark" placeholder="备注" style="margin-top:8px;">
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 5. 预算与冲突 -->
-    <div class="section">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-title"><span class="section-num">5</span>预算与取舍</div>
-        <span class="toggle-icon">▼</span>
-      </div>
-      <div class="section-content">
-
-        <div class="field">
-          <label class="field-label">装修硬装预算<br><span class="field-note">（房屋拆改、水电、泥工、木工、油漆）</span></label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="budget_hard" value="5~10万">5~10万</label>
-            <label class="check-item"><input type="checkbox" name="budget_hard" value="11~15万">11~15万</label>
-            <label class="check-item"><input type="checkbox" name="budget_hard" value="16~20万">16~20万</label>
-            <label class="check-item"><input type="checkbox" name="budget_hard" value="21万以上">21万以上</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">装修主材和定制预算<br><span class="field-note">（瓷砖、定制柜、门、地脚线、石膏线）</span></label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="budget_mat" value="3~5万">3~5万</label>
-            <label class="check-item"><input type="checkbox" name="budget_mat" value="6~8万">6~8万</label>
-            <label class="check-item"><input type="checkbox" name="budget_mat" value="9~11万">9~11万</label>
-            <label class="check-item"><input type="checkbox" name="budget_mat" value="12万以上">12万以上</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">装修软装预算<br><span class="field-note">（沙发、床、椅子）</span></label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="budget_soft" value="3~5万">3~5万</label>
-            <label class="check-item"><input type="checkbox" name="budget_soft" value="6~8万">6~8万</label>
-            <label class="check-item"><input type="checkbox" name="budget_soft" value="9~11万">9~11万</label>
-            <label class="check-item"><input type="checkbox" name="budget_soft" value="12万以上">12万以上</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">装修电器预算</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="budget_app" value="2~4万">2~4万</label>
-            <label class="check-item"><input type="checkbox" name="budget_app" value="5~7万">5~7万</label>
-            <label class="check-item"><input type="checkbox" name="budget_app" value="8~10万">8~10万</label>
-            <label class="check-item"><input type="checkbox" name="budget_app" value="11万以上">11万以上</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">冲突 VS 取舍（当以下因素冲突时，您优先选择哪边？）</label>
-          <div class="vs-grid">
-            <div class="vs-item">风水 vs 功能 <select name="vs1"><option value="">请选择</option><option>风水优先</option><option>功能优先</option></select></div>
-            <div class="vs-item">美观 vs 功能 <select name="vs2"><option value="">请选择</option><option>美观优先</option><option>功能优先</option></select></div>
-            <div class="vs-item">采光通风 vs 隐私 <select name="vs3"><option value="">请选择</option><option>采光通风优先</option><option>隐私优先</option></select></div>
-            <div class="vs-item">收纳 vs 空间开阔感 <select name="vs4"><option value="">请选择</option><option>收纳优先</option><option>开阔感优先</option></select></div>
-            <div class="vs-item">女业主需求 vs 男业主需求 <select name="vs5"><option value="">请选择</option><option>女业主优先</option><option>男业主优先</option></select></div>
-            <div class="vs-item">预算成本 vs 设计理想 <select name="vs6"><option value="">请选择</option><option>预算优先</option><option>理想优先</option></select></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 6. 全屋设备 -->
-    <div class="section">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-title"><span class="section-num">6</span>全屋设备</div>
-        <span class="toggle-icon">▼</span>
-      </div>
-      <div class="section-content">
-
-        <div class="field">
-          <label class="field-label">空调系统</label>
-          <div class="check-group wide">
-            <label class="check-item"><input type="checkbox" name="ac" value="全屋中央空调">全屋中央空调</label>
-            <label class="check-item"><input type="checkbox" name="ac" value="全屋风管机">全屋风管机</label>
-            <label class="check-item"><input type="checkbox" name="ac" value="客餐厅+主要房间中央空调+部分房间壁挂空调">客餐厅+主要房间中央空调+部分房间壁挂空调</label>
-            <label class="check-item"><input type="checkbox" name="ac" value="客餐厅+主要房间风管机+部分房间壁挂空调">客餐厅+主要房间风管机+部分房间壁挂空调</label>
-            <label class="check-item"><input type="checkbox" name="ac" value="客餐厅风管机/中央空调+房间壁挂空调">客餐厅风管机/中央空调+房间壁挂空调</label>
-            <label class="check-item"><input type="checkbox" name="ac" value="客餐厅立式空调+房间壁挂空调">客餐厅立式空调+房间壁挂空调</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">供暖系统</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="heat" value="地暖">地暖</label>
-            <label class="check-item"><input type="checkbox" name="heat" value="壁挂炉散热器">壁挂炉散热器</label>
-            <label class="check-item"><input type="checkbox" name="heat" value="真火壁炉">真火壁炉</label>
-            <label class="check-item"><input type="checkbox" name="heat" value="冷暖空调">冷暖空调</label>
-            <label class="check-item"><input type="checkbox" name="heat" value="无">无</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">新风系统</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="fresh_air" value="全房新风系统">全房新风系统</label>
-            <label class="check-item"><input type="checkbox" name="fresh_air" value="主要空间新风系统">主要空间新风系统</label>
-            <label class="check-item"><input type="checkbox" name="fresh_air" value="无">无</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">水处理系统（可多选）</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="water" value="中央净水系统">中央净水系统</label>
-            <label class="check-item"><input type="checkbox" name="water" value="中央软水系统">中央软水系统</label>
-            <label class="check-item"><input type="checkbox" name="water" value="前置过滤器">前置过滤器</label>
-            <label class="check-item"><input type="checkbox" name="water" value="净水器">净水器</label>
-            <label class="check-item"><input type="checkbox" name="water" value="直饮水机">直饮水机</label>
-            <label class="check-item"><input type="checkbox" name="water" value="无">无</label>
-            <label class="check-item"><input type="checkbox" name="water" value="其他">其他</label>
-          </div>
-          <input type="text" name="water_remark" placeholder="备注" style="margin-top:8px;">
-        </div>
-
-        <div class="field">
-          <label class="field-label">热水系统</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="hot_water" value="燃气热水器">燃气热水器</label>
-            <label class="check-item"><input type="checkbox" name="hot_water" value="电热水器">电热水器</label>
-            <label class="check-item"><input type="checkbox" name="hot_water" value="壁挂炉">壁挂炉</label>
-            <label class="check-item"><input type="checkbox" name="hot_water" value="空气能">空气能</label>
-            <label class="check-item"><input type="checkbox" name="hot_water" value="太阳能">太阳能</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">智能家居</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="smart" value="安防">安防</label>
-            <label class="check-item"><input type="checkbox" name="smart" value="背景音">背景音</label>
-            <label class="check-item"><input type="checkbox" name="smart" value="智能开关">智能开关</label>
-            <label class="check-item"><input type="checkbox" name="smart" value="智能灯光">智能灯光</label>
-            <label class="check-item"><input type="checkbox" name="smart" value="电动窗帘">电动窗帘</label>
-            <label class="check-item"><input type="checkbox" name="smart" value="无">无</label>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 7. 地板与瓷砖 -->
-    <div class="section">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-title"><span class="section-num">7</span>地板与瓷砖</div>
-        <span class="toggle-icon">▼</span>
-      </div>
-      <div class="section-content">
-
-        <div class="field">
-          <label class="field-label">地板铺设方式</label>
-          <div class="check-group wide">
-            <label class="check-item"><input type="checkbox" name="floor" value="全房瓷砖">全房瓷砖</label>
-            <label class="check-item"><input type="checkbox" name="floor" value="公共区域瓷砖+房间木地板">公共区域瓷砖+房间木地板</label>
-            <label class="check-item"><input type="checkbox" name="floor" value="湿区瓷砖+全房木地板">湿区瓷砖+全房木地板</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">瓷砖尺寸偏好</label>
-          <div class="sub-label">公共区域</div>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="tile_public" value="800*800">800×800</label>
-            <label class="check-item"><input type="checkbox" name="tile_public" value="600*1200">600×1200</label>
-            <label class="check-item"><input type="checkbox" name="tile_public" value="750*1500">750×1500</label>
-            <label class="check-item"><input type="checkbox" name="tile_public" value="900*1800">900×1800</label>
-            <label class="check-item"><input type="checkbox" name="tile_public" value="无要求">无要求</label>
-          </div>
-          <div class="sub-label" style="margin-top:12px;">房间</div>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="tile_room" value="800*800">800×800</label>
-            <label class="check-item"><input type="checkbox" name="tile_room" value="600*1200">600×1200</label>
-            <label class="check-item"><input type="checkbox" name="tile_room" value="750*1500">750×1500</label>
-            <label class="check-item"><input type="checkbox" name="tile_room" value="无要求">无要求</label>
-          </div>
-          <div class="sub-label" style="margin-top:12px;">卫生间</div>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="tile_bath" value="200*200">200×200</label>
-            <label class="check-item"><input type="checkbox" name="tile_bath" value="400*400">400×400</label>
-            <label class="check-item"><input type="checkbox" name="tile_bath" value="600*600">600×600</label>
-            <label class="check-item"><input type="checkbox" name="tile_bath" value="无要求">无要求</label>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 8. 灯光与吊顶 -->
-    <div class="section">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-title"><span class="section-num">8</span>灯光与吊顶</div>
-        <span class="toggle-icon">▼</span>
-      </div>
-      <div class="section-content">
-
-        <div class="field">
-          <label class="field-label">灯光方案</label>
-          <div class="check-group wide">
-            <label class="check-item"><input type="checkbox" name="light_plan" value="全房无主灯">全房无主灯</label>
-            <label class="check-item"><input type="checkbox" name="light_plan" value="公共区域无主灯+房间主灯">公共区域无主灯+房间主灯</label>
-            <label class="check-item"><input type="checkbox" name="light_plan" value="全房主灯设计">全房主灯设计</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">灯具类型（可多选）</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="lamp" value="吸顶灯">吸顶灯</label>
-            <label class="check-item"><input type="checkbox" name="lamp" value="吊灯">吊灯</label>
-            <label class="check-item"><input type="checkbox" name="lamp" value="风扇灯">风扇灯</label>
-            <label class="check-item"><input type="checkbox" name="lamp" value="轨道灯">轨道灯</label>
-            <label class="check-item"><input type="checkbox" name="lamp" value="筒灯">筒灯</label>
-            <label class="check-item"><input type="checkbox" name="lamp" value="落地灯">落地灯</label>
-            <label class="check-item"><input type="checkbox" name="lamp" value="射灯">射灯</label>
-            <label class="check-item"><input type="checkbox" name="lamp" value="灯带">灯带</label>
-            <label class="check-item"><input type="checkbox" name="lamp" value="小吊灯">小吊灯</label>
-            <label class="check-item"><input type="checkbox" name="lamp" value="壁灯">壁灯</label>
-            <label class="check-item"><input type="checkbox" name="lamp" value="感应夜灯">感应夜灯</label>
-            <label class="check-item"><input type="checkbox" name="lamp" value="软膜灯">软膜灯</label>
-            <label class="check-item"><input type="checkbox" name="lamp" value="其他">其他</label>
-          </div>
-          <input type="text" name="lamp_remark" placeholder="备注" style="margin-top:8px;">
-        </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label class="field-label">卫生间吊顶</label>
-            <div class="check-group">
-              <label class="check-item"><input type="checkbox" name="bath_ceil" value="石膏板">石膏板</label>
-              <label class="check-item"><input type="checkbox" name="bath_ceil" value="蜂窝大板">蜂窝大板</label>
-              <label class="check-item"><input type="checkbox" name="bath_ceil" value="铝扣板">铝扣板</label>
-            </div>
-          </div>
-          <div class="field">
-            <label class="field-label">厨房吊顶</label>
-            <div class="check-group">
-              <label class="check-item"><input type="checkbox" name="kitchen_ceil" value="石膏板">石膏板</label>
-              <label class="check-item"><input type="checkbox" name="kitchen_ceil" value="蜂窝大板">蜂窝大板</label>
-              <label class="check-item"><input type="checkbox" name="kitchen_ceil" value="铝扣板">铝扣板</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label">石膏线设计（可多选）</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="molding" value="无">无</label>
-            <label class="check-item"><input type="checkbox" name="molding" value="单眼皮">单眼皮</label>
-            <label class="check-item"><input type="checkbox" name="molding" value="双眼皮">双眼皮</label>
-            <label class="check-item"><input type="checkbox" name="molding" value="虎头线">虎头线</label>
-            <label class="check-item"><input type="checkbox" name="molding" value="花瓣线">花瓣线</label>
-            <label class="check-item"><input type="checkbox" name="molding" value="S线">S线</label>
-            <label class="check-item"><input type="checkbox" name="molding" value="C线">C线</label>
-            <label class="check-item"><input type="checkbox" name="molding" value="瓦楞线">瓦楞线</label>
-            <label class="check-item"><input type="checkbox" name="molding" value="根据设计风格决定">根据设计风格决定</label>
-            <label class="check-item"><input type="checkbox" name="molding" value="其他">其他</label>
-          </div>
-          <input type="text" name="molding_remark" placeholder="备注" style="margin-top:8px;">
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 9. 窗帘与其他 -->
-    <div class="section">
-      <div class="section-head" onclick="toggleSection(this)">
-        <div class="section-title"><span class="section-num">9</span>窗帘、风水与其他</div>
-        <span class="toggle-icon">▼</span>
-      </div>
-      <div class="section-content">
-
-        <div class="field">
-          <label class="field-label">窗帘</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="curtain" value="客厅双帘">客厅双帘</label>
-            <label class="check-item"><input type="checkbox" name="curtain" value="客厅单帘">客厅单帘</label>
-            <label class="check-item"><input type="checkbox" name="curtain" value="房间双帘">房间双帘</label>
-            <label class="check-item"><input type="checkbox" name="curtain" value="房间单帘">房间单帘</label>
-            <label class="check-item"><input type="checkbox" name="curtain" value="其他">其他</label>
-          </div>
-          <input type="text" name="curtain_remark" placeholder="备注" style="margin-top:8px;">
-        </div>
-
-        <div class="field">
-          <label class="field-label">风水</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="fengshui" value="无">无</label>
-            <label class="check-item"><input type="checkbox" name="fengshui" value="风水">风水</label>
-            <label class="check-item"><input type="checkbox" name="fengshui" value="信仰">信仰</label>
-            <label class="check-item"><input type="checkbox" name="fengshui" value="门的位置">门的位置</label>
-            <label class="check-item"><input type="checkbox" name="fengshui" value="床的朝向">床的朝向</label>
-            <label class="check-item"><input type="checkbox" name="fengshui" value="其他">其他</label>
-          </div>
-          <input type="text" name="fengshui_remark" placeholder="备注" style="margin-top:8px;">
-        </div>
-
-        <div class="field">
-          <label class="field-label">旧物沿用<br><span class="field-note">需要融入新家的、充满回忆的旧家具、收藏品或特定元素</span></label>
-          <label class="check-item"><input type="checkbox" name="old_item" value="无">无</label>
-          <textarea name="old_item_remark" placeholder="请描述需要沿用的旧物..." style="margin-top:8px;"></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">描述生活习惯及作息时间</label>
-          <textarea name="life_habit" placeholder="例如：晚上11点睡觉、6点半起床；周末喜欢睡懒觉到10点..."></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">最重要的家居活动</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="key_activity" value="共同做法">共同做饭</label>
-            <label class="check-item"><input type="checkbox" name="key_activity" value="共同观影">共同观影</label>
-            <label class="check-item"><input type="checkbox" name="key_activity" value="辅导作业">辅导作业</label>
-            <label class="check-item"><input type="checkbox" name="key_activity" value="各自安静阅读">各自安静阅读</label>
-            <label class="check-item"><input type="checkbox" name="key_activity" value="其他">其他</label>
-          </div>
-          <input type="text" name="activity_remark" placeholder="备注" style="margin-top:8px;">
-        </div>
-
-        <div class="field">
-          <label class="field-label">运动设备</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="sport" value="无">无</label>
-            <label class="check-item"><input type="checkbox" name="sport" value="跑步机">跑步机</label>
-            <label class="check-item"><input type="checkbox" name="sport" value="椭圆机">椭圆机</label>
-            <label class="check-item"><input type="checkbox" name="sport" value="训练凳">训练凳</label>
-            <label class="check-item"><input type="checkbox" name="sport" value="动感单车">动感单车</label>
-            <label class="check-item"><input type="checkbox" name="sport" value="其他">其他</label>
-          </div>
-          <input type="text" name="sport_remark" placeholder="备注" style="margin-top:8px;">
-        </div>
-
-        <div class="field">
-          <label class="field-label">其他设备（乐器等）</label>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" name="equip" value="无">无</label>
-            <label class="check-item"><input type="checkbox" name="equip" value="钢琴">钢琴</label>
-            <label class="check-item"><input type="checkbox" name="equip" value="古筝">古筝</label>
-            <label class="check-item"><input type="checkbox" name="equip" value="画架">画架</label>
-            <label class="check-item"><input type="checkbox" name="equip" value="架子鼓">架子鼓</label>
-            <label class="check-item"><input type="checkbox" name="equip" value="吉他">吉他</label>
-            <label class="check-item"><input type="checkbox" name="equip" value="其他">其他</label>
-          </div>
-          <input type="text" name="equip_remark" placeholder="备注" style="margin-top:8px;">
-        </div>
-
-        <div class="field">
-          <label class="field-label">理想家关键词</label>
-          <textarea name="ideal_keywords" placeholder="例如：温暖、有质感、安静、充满阳光..."></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">描述理想中的周末场景</label>
-          <textarea name="ideal_weekend" placeholder="例如：周末早晨阳光洒进客厅，一家人围坐在一起喝咖啡、看书..."></textarea>
-        </div>
-
-      </div>
-    </div>
-
-  </form>
-
-  <div class="submit-section">
-    <button type="button" class="submit-btn" onclick="handleSubmit()">提交需求</button>
-    <p class="submit-note">提交后将自动发送问卷结果 🌿</p>
-  </div>
+<!-- ==================== 1. 基本情况 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>基本情况</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+
+<div class="section">
+<div class="two-col">
+  <div class="question"><span class="q-label">客户姓名</span><input type="text" name="客户姓名" placeholder="请输入姓名"></div>
+  <div class="question"><span class="q-label">客户电话</span><input type="tel" name="客户电话" placeholder="请输入电话号码"></div>
+</div>
 </div>
 
-<!-- 成功弹窗 -->
-<div class="modal" id="successModal">
-  <div class="modal-box">
-    <div class="modal-icon">✓</div>
-    <h2>提交成功</h2>
-    <p>感谢您的填写，问卷结果已自动发送。</p>
-    <button class="modal-btn" onclick="closeModal()">好的</button>
+<div class="section">
+<div class="two-col">
+  <div class="question"><span class="q-label">建筑面积</span><input type="text" name="建筑面积" placeholder="如：120㎡"></div>
+  <div class="question"><span class="q-label">建筑地址</span><input type="text" name="建筑地址" placeholder="请输入地址"></div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">家庭常住人口</span>
+  <div class="four-col">
+    <div><label style="font-size:13px;color:var(--light-text)">大人</label><input type="number" name="常住人口_大人" min="0" value=""></div>
+    <div><label style="font-size:13px;color:var(--light-text)">老人</label><input type="number" name="常住人口_老人" min="0" value=""></div>
+    <div><label style="font-size:13px;color:var(--light-text)">儿童</label><input type="number" name="常住人口_儿童" min="0" value=""></div>
+    <div><label style="font-size:13px;color:var(--light-text)">共计</label><input type="number" name="常住人口_共计" min="0" value=""></div>
   </div>
 </div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">职业身份</span>
+  <span class="q-sub-label">女业主</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="职业_女业主" value="经商"><span>经商</span></label>
+    <label><input type="checkbox" name="职业_女业主" value="公务员"><span>公务员</span></label>
+    <label><input type="checkbox" name="职业_女业主" value="医生"><span>医生</span></label>
+    <label><input type="checkbox" name="职业_女业主" value="教师"><span>教师</span></label>
+    <label><input type="checkbox" name="职业_女业主" value="艺术从业者"><span>艺术从业者</span></label>
+    <label><input type="checkbox" name="职业_女业主" value="自由职业者"><span>自由职业者</span></label>
+    <label><input type="checkbox" name="职业_女业主" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="职业_女业主_备注" placeholder="其他备注" class="remark-input"></textarea>
+
+  <span class="q-sub-label">男业主</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="职业_男业主" value="经商"><span>经商</span></label>
+    <label><input type="checkbox" name="职业_男业主" value="公务员"><span>公务员</span></label>
+    <label><input type="checkbox" name="职业_男业主" value="医生"><span>医生</span></label>
+    <label><input type="checkbox" name="职业_男业主" value="教师"><span>教师</span></label>
+    <label><input type="checkbox" name="职业_男业主" value="艺术从业者"><span>艺术从业者</span></label>
+    <label><input type="checkbox" name="职业_男业主" value="自由职业者"><span>自由职业者</span></label>
+    <label><input type="checkbox" name="职业_男业主" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="职业_男业主_备注" placeholder="其他备注" class="remark-input"></textarea>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">房屋类型</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="房屋类型" value="平层"><span>平层</span></label>
+    <label><input type="checkbox" name="房屋类型" value="平层大宅"><span>平层大宅</span></label>
+    <label><input type="checkbox" name="房屋类型" value="自建房"><span>自建房</span></label>
+    <label><input type="checkbox" name="房屋类型" value="商住公寓"><span>商住公寓</span></label>
+    <label><input type="checkbox" name="房屋类型" value="别墅"><span>别墅</span></label>
+    <label><input type="checkbox" name="房屋类型" value="洋房"><span>洋房</span></label>
+    <label><input type="checkbox" name="房屋类型" value="其他"><span>其他</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">房屋交付性质</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="房屋交付性质" value="毛坯房"><span>毛坯房</span></label>
+    <label><input type="checkbox" name="房屋交付性质" value="精装房"><span>精装房</span></label>
+    <label><input type="checkbox" name="房屋交付性质" value="旧房改造"><span>旧房改造</span></label>
+    <label><input type="checkbox" name="房屋交付性质" value="节能型被动房"><span>节能型被动房</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">居住性质</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="居住性质" value="刚需房"><span>刚需房</span></label>
+    <label><input type="checkbox" name="居住性质" value="改善房"><span>改善房</span></label>
+    <label><input type="checkbox" name="居住性质" value="度假房"><span>度假房</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">开工和入住</span>
+  <div class="two-col">
+    <div><span class="q-sub-label" style="margin-top:0">计划开工时间</span><input type="date" name="计划开工时间"></div>
+    <div><span class="q-sub-label" style="margin-top:0">计划入住时间</span><input type="date" name="计划入住时间"></div>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">住宅使用方式</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="住宅使用方式" value="常年居住"><span>常年居住</span></label>
+    <label><input type="radio" name="住宅使用方式" value="度假居住"><span>度假居住</span></label>
+    <label><input type="radio" name="住宅使用方式" value="投资搁置出租"><span>投资、搁置、出租</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">其他人员身份</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="其他人员身份" value="男性长辈"><span>男性长辈</span></label>
+    <label><input type="checkbox" name="其他人员身份" value="女性长辈"><span>女性长辈</span></label>
+    <label><input type="checkbox" name="其他人员身份" value="男孩"><span>男孩</span></label>
+    <label><input type="checkbox" name="其他人员身份" value="女孩"><span>女孩</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">业主年龄</span>
+  <span class="q-sub-label">女业主</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="女业主年龄" value="22~28"><span>22~28</span></label>
+    <label><input type="radio" name="女业主年龄" value="29~36"><span>29~36</span></label>
+    <label><input type="radio" name="女业主年龄" value="37以上"><span>37以上</span></label>
+  </div>
+  <span class="q-sub-label">男业主</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="男业主年龄" value="22~28"><span>22~28</span></label>
+    <label><input type="radio" name="男业主年龄" value="29~36"><span>29~36</span></label>
+    <label><input type="radio" name="男业主年龄" value="37以上"><span>37以上</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">其他人员年龄</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="其他人员年龄" value="长辈60岁以上"><span>长辈：60岁以上</span></label>
+    <label><input type="checkbox" name="其他人员年龄" value="儿童0-5岁"><span>儿童：0-5岁</span></label>
+    <label><input type="checkbox" name="其他人员年龄" value="儿童6-12岁"><span>儿童：6-12岁</span></label>
+    <label><input type="checkbox" name="其他人员年龄" value="儿童13-18岁"><span>儿童：13-18岁</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">特别成员</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="特别成员" value="无"><span>无</span></label>
+    <label><input type="checkbox" name="特别成员" value="猫"><span>猫</span></label>
+    <label><input type="checkbox" name="特别成员" value="狗"><span>狗</span></label>
+    <label><input type="checkbox" name="特别成员" value="鱼"><span>鱼</span></label>
+    <label><input type="checkbox" name="特别成员" value="鸟"><span>鸟</span></label>
+    <label><input type="checkbox" name="特别成员" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="特别成员_备注" placeholder="其他备注" class="remark-input"></textarea>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">工作性质</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="工作性质" value="常居家办公"><span>常居家办公</span></label>
+    <label><input type="checkbox" name="工作性质" value="经常出差"><span>经常出差</span></label>
+    <label><input type="checkbox" name="工作性质" value="早出晚归"><span>早出晚归</span></label>
+    <label><input type="checkbox" name="工作性质" value="早出早归"><span>早出早归</span></label>
+    <label><input type="checkbox" name="工作性质" value="晚出晚归"><span>晚出晚归</span></label>
+    <label><input type="checkbox" name="工作性质" value="早中晚在家"><span>早中晚在家</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">做饭频率</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="做饭频率" value="高频每日做饭"><span>高频：每日做饭</span></label>
+    <label><input type="radio" name="做饭频率" value="中频工作日简餐周末正餐"><span>中频：工作日简餐 周末正餐（每周1-3次）</span></label>
+    <label><input type="radio" name="做饭频率" value="低频仅周末节假日"><span>低频：仅周末、节假日聚餐开火</span></label>
+    <label><input type="radio" name="做饭频率" value="基本不开火"><span>基本不开火</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">留宿频率</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="留宿频率" value="高频每月≥5次"><span>高频：每月≥5次</span></label>
+    <label><input type="radio" name="留宿频率" value="中频每月≥2-3次"><span>中频：每月≥2-3次</span></label>
+    <label><input type="radio" name="留宿频率" value="低频一年数次"><span>低频：一年数次 逢年过节</span></label>
+    <label><input type="radio" name="留宿频率" value="无留宿"><span>无留宿</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">留宿人员（可多选）</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="留宿人员" value="长辈父母"><span>长辈父母</span></label>
+    <label><input type="checkbox" name="留宿人员" value="同辈亲友"><span>同辈亲友</span></label>
+    <label><input type="checkbox" name="留宿人员" value="同龄好友"><span>同龄好友</span></label>
+    <label><input type="checkbox" name="留宿人员" value="孩童亲戚小孩"><span>孩童/亲戚小孩</span></label>
+    <label><input type="checkbox" name="留宿人员" value="无外来留宿人员"><span>无外来留宿人员</span></label>
+  </div>
+  <textarea name="留宿人员_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ==================== 2. 特别需求 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>特别需求</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+
+<div class="section">
+<div class="question">
+  <span class="q-label">总体需求</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="总体需求" value="看书"><span>看书</span></label>
+    <label><input type="checkbox" name="总体需求" value="喝茶"><span>喝茶</span></label>
+    <label><input type="checkbox" name="总体需求" value="观影"><span>观影</span></label>
+    <label><input type="checkbox" name="总体需求" value="打游戏"><span>打游戏</span></label>
+    <label><input type="checkbox" name="总体需求" value="收藏手办潮玩古玩"><span>收藏手办/潮玩/古玩</span></label>
+    <label><input type="checkbox" name="总体需求" value="弹奏乐器"><span>弹奏乐器</span></label>
+    <label><input type="checkbox" name="总体需求" value="居家健身"><span>居家健身</span></label>
+    <label><input type="checkbox" name="总体需求" value="垂钓户外露营"><span>垂钓/户外露营</span></label>
+    <label><input type="checkbox" name="总体需求" value="养花绿植"><span>养花绿植</span></label>
+    <label><input type="checkbox" name="总体需求" value="烘焙做饭"><span>烘焙做饭</span></label>
+    <label><input type="checkbox" name="总体需求" value="书法绘画"><span>书法绘画</span></label>
+    <label><input type="checkbox" name="总体需求" value="手工"><span>手工</span></label>
+    <label><input type="checkbox" name="总体需求" value="品酒"><span>品酒</span></label>
+    <label><input type="checkbox" name="总体需求" value="棋牌娱乐"><span>棋牌娱乐</span></label>
+    <label><input type="checkbox" name="总体需求" value="摄影"><span>摄影</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">女业主</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="特别需求_女业主" value="化妆美妆"><span>化妆美妆</span></label>
+    <label><input type="checkbox" name="特别需求_女业主" value="穿搭衣物打理"><span>穿搭衣物打理</span></label>
+    <label><input type="checkbox" name="特别需求_女业主" value="居家办公"><span>居家办公</span></label>
+    <label><input type="checkbox" name="特别需求_女业主" value="畏光畏寒畏风"><span>畏光畏寒畏风</span></label>
+    <label><input type="checkbox" name="特别需求_女业主" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="特别需求_女业主_备注" placeholder="其他备注" class="remark-input"></textarea>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">男业主</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="特别需求_男业主" value="居家办公"><span>居家办公</span></label>
+    <label><input type="checkbox" name="特别需求_男业主" value="抽烟"><span>抽烟</span></label>
+    <label><input type="checkbox" name="特别需求_男业主" value="畏光畏寒畏风"><span>畏光畏寒畏风</span></label>
+    <label><input type="checkbox" name="特别需求_男业主" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="特别需求_男业主_备注" placeholder="其他备注" class="remark-input"></textarea>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">女性长辈</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="特别需求_女性长辈" value="低矮便捷柜体"><span>低矮便捷柜体</span></label>
+    <label><input type="checkbox" name="特别需求_女性长辈" value="浴室扶手"><span>浴室扶手</span></label>
+    <label><input type="checkbox" name="特别需求_女性长辈" value="衣物饰品收纳"><span>衣物/饰品收纳</span></label>
+    <label><input type="checkbox" name="特别需求_女性长辈" value="畏光畏寒畏风"><span>畏光畏寒畏风</span></label>
+    <label><input type="checkbox" name="特别需求_女性长辈" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="特别需求_女性长辈_备注" placeholder="其他备注" class="remark-input"></textarea>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">男性长辈</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="特别需求_男性长辈" value="低矮便捷柜体"><span>低矮便捷柜体</span></label>
+    <label><input type="checkbox" name="特别需求_男性长辈" value="浴室扶手"><span>浴室扶手</span></label>
+    <label><input type="checkbox" name="特别需求_男性长辈" value="收纳"><span>收纳</span></label>
+    <label><input type="checkbox" name="特别需求_男性长辈" value="畏光畏寒畏风"><span>畏光畏寒畏风</span></label>
+    <label><input type="checkbox" name="特别需求_男性长辈" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="特别需求_男性长辈_备注" placeholder="其他备注" class="remark-input"></textarea>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">女性儿童</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="特别需求_女性儿童" value="收纳衣物"><span>收纳衣物</span></label>
+    <label><input type="checkbox" name="特别需求_女性儿童" value="收纳玩具"><span>收纳玩具</span></label>
+    <label><input type="checkbox" name="特别需求_女性儿童" value="收纳书本"><span>收纳书本</span></label>
+    <label><input type="checkbox" name="特别需求_女性儿童" value="学习工位"><span>学习工位</span></label>
+    <label><input type="checkbox" name="特别需求_女性儿童" value="睡眠遮光"><span>睡眠遮光</span></label>
+    <label><input type="checkbox" name="特别需求_女性儿童" value="弹奏乐器"><span>弹奏乐器</span></label>
+    <label><input type="checkbox" name="特别需求_女性儿童" value="安全细节处理"><span>安全细节处理</span></label>
+    <label><input type="checkbox" name="特别需求_女性儿童" value="梳妆台面"><span>梳妆台面</span></label>
+    <label><input type="checkbox" name="特别需求_女性儿童" value="畏光畏寒畏风"><span>畏光畏寒畏风</span></label>
+    <label><input type="checkbox" name="特别需求_女性儿童" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="特别需求_女性儿童_备注" placeholder="其他备注" class="remark-input"></textarea>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">男性儿童</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="特别需求_男性儿童" value="收纳衣物"><span>收纳衣物</span></label>
+    <label><input type="checkbox" name="特别需求_男性儿童" value="收纳玩具"><span>收纳玩具</span></label>
+    <label><input type="checkbox" name="特别需求_男性儿童" value="收纳书本"><span>收纳书本</span></label>
+    <label><input type="checkbox" name="特别需求_男性儿童" value="学习工位"><span>学习工位</span></label>
+    <label><input type="checkbox" name="特别需求_男性儿童" value="睡眠遮光"><span>睡眠遮光</span></label>
+    <label><input type="checkbox" name="特别需求_男性儿童" value="弹奏乐器"><span>弹奏乐器</span></label>
+    <label><input type="checkbox" name="特别需求_男性儿童" value="安全细节处理"><span>安全细节处理</span></label>
+    <label><input type="checkbox" name="特别需求_男性儿童" value="畏光畏寒畏风"><span>畏光畏寒畏风</span></label>
+    <label><input type="checkbox" name="特别需求_男性儿童" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="特别需求_男性儿童_备注" placeholder="其他备注" class="remark-input"></textarea>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">其他成员</span>
+  <textarea name="特别需求_其他成员_备注" placeholder="备注" rows="3"></textarea>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ==================== 3. 空间规划 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>空间规划</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">需要以下空间</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="空间规划" value="主卧"><span>主卧</span></label>
+    <label><input type="checkbox" name="空间规划" value="次卧"><span>次卧</span></label>
+    <label><input type="checkbox" name="空间规划" value="客房"><span>客房</span></label>
+    <label><input type="checkbox" name="空间规划" value="主卫"><span>主卫</span></label>
+    <label><input type="checkbox" name="空间规划" value="次卫"><span>次卫</span></label>
+    <label><input type="checkbox" name="空间规划" value="衣帽间"><span>衣帽间</span></label>
+    <label><input type="checkbox" name="空间规划" value="书房"><span>书房</span></label>
+    <label><input type="checkbox" name="空间规划" value="长辈房"><span>长辈房</span></label>
+    <label><input type="checkbox" name="空间规划" value="儿童房"><span>儿童房</span></label>
+    <label><input type="checkbox" name="空间规划" value="男孩房"><span>男孩房</span></label>
+    <label><input type="checkbox" name="空间规划" value="女孩房"><span>女孩房</span></label>
+    <label><input type="checkbox" name="空间规划" value="电竞房"><span>电竞房</span></label>
+    <label><input type="checkbox" name="空间规划" value="健身房"><span>健身房</span></label>
+    <label><input type="checkbox" name="空间规划" value="保姆房"><span>保姆房</span></label>
+    <label><input type="checkbox" name="空间规划" value="茶室"><span>茶室</span></label>
+    <label><input type="checkbox" name="空间规划" value="景观阳台"><span>景观阳台</span></label>
+    <label><input type="checkbox" name="空间规划" value="生活阳台"><span>生活阳台</span></label>
+    <label><input type="checkbox" name="空间规划" value="洗衣房"><span>洗衣房</span></label>
+    <label><input type="checkbox" name="空间规划" value="晾晒房"><span>晾晒房</span></label>
+    <label><input type="checkbox" name="空间规划" value="储物间"><span>储物间</span></label>
+    <label><input type="checkbox" name="空间规划" value="其他空间"><span>其他空间</span></label>
+  </div>
+  <textarea name="空间规划_备注" placeholder="其他空间需求备注" class="remark-input"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 4. 设计风格 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>设计风格</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">喜欢的风格（可多选）</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="设计风格" value="现代简约"><span>现代简约</span></label>
+    <label><input type="checkbox" name="设计风格" value="南洋复古"><span>南洋复古</span></label>
+    <label><input type="checkbox" name="设计风格" value="原木"><span>原木</span></label>
+    <label><input type="checkbox" name="设计风格" value="新中式"><span>新中式</span></label>
+    <label><input type="checkbox" name="设计风格" value="宋氏美学"><span>宋氏美学</span></label>
+    <label><input type="checkbox" name="设计风格" value="波西米亚"><span>波西米亚</span></label>
+    <label><input type="checkbox" name="设计风格" value="奶油"><span>奶油</span></label>
+    <label><input type="checkbox" name="设计风格" value="多巴胺"><span>多巴胺</span></label>
+    <label><input type="checkbox" name="设计风格" value="意式轻奢"><span>意式轻奢</span></label>
+    <label><input type="checkbox" name="设计风格" value="折衷主义"><span>折衷主义</span></label>
+    <label><input type="checkbox" name="设计风格" value="中古"><span>中古</span></label>
+    <label><input type="checkbox" name="设计风格" value="轻法式"><span>轻法式</span></label>
+    <label><input type="checkbox" name="设计风格" value="意式极简"><span>意式极简</span></label>
+    <label><input type="checkbox" name="设计风格" value="中式"><span>中式</span></label>
+    <label><input type="checkbox" name="设计风格" value="包豪斯"><span>包豪斯</span></label>
+    <label><input type="checkbox" name="设计风格" value="现代美式"><span>现代美式</span></label>
+    <label><input type="checkbox" name="设计风格" value="地中海"><span>地中海</span></label>
+    <label><input type="checkbox" name="设计风格" value="北欧"><span>北欧</span></label>
+    <label><input type="checkbox" name="设计风格" value="自然系"><span>自然系</span></label>
+    <label><input type="checkbox" name="设计风格" value="美式乡村"><span>美式乡村</span></label>
+    <label><input type="checkbox" name="设计风格" value="工业"><span>工业</span></label>
+    <label><input type="checkbox" name="设计风格" value="摩洛哥"><span>摩洛哥</span></label>
+    <label><input type="checkbox" name="设计风格" value="托斯卡纳"><span>托斯卡纳</span></label>
+    <label><input type="checkbox" name="设计风格" value="混搭"><span>混搭</span></label>
+    <label><input type="checkbox" name="设计风格" value="法式"><span>法式</span></label>
+    <label><input type="checkbox" name="设计风格" value="东南亚"><span>东南亚</span></label>
+    <label><input type="checkbox" name="设计风格" value="韩系海盐"><span>韩系海盐</span></label>
+    <label><input type="checkbox" name="设计风格" value="暗黑"><span>暗黑</span></label>
+    <label><input type="checkbox" name="设计风格" value="日式"><span>日式</span></label>
+    <label><input type="checkbox" name="设计风格" value="阿尔托"><span>阿尔托</span></label>
+    <label><input type="checkbox" name="设计风格" value="黑白灰极简"><span>黑白灰极简</span></label>
+    <label><input type="checkbox" name="设计风格" value="老钱"><span>老钱</span></label>
+    <label><input type="checkbox" name="设计风格" value="美式"><span>美式</span></label>
+    <label><input type="checkbox" name="设计风格" value="新古典"><span>新古典</span></label>
+    <label><input type="checkbox" name="设计风格" value="田园"><span>田园</span></label>
+    <label><input type="checkbox" name="设计风格" value="侘寂"><span>侘寂</span></label>
+    <label><input type="checkbox" name="设计风格" value="欧式"><span>欧式</span></label>
+    <label><input type="checkbox" name="设计风格" value="ART DECO"><span>ART DECO</span></label>
+    <label><input type="checkbox" name="设计风格" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="设计风格_备注" placeholder="其他风格备注" class="remark-input"></textarea>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">色彩感觉</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="色彩感觉" value="黑白灰冷色"><span>黑白灰冷色</span></label>
+    <label><input type="checkbox" name="色彩感觉" value="纯白极简"><span>纯白极简</span></label>
+    <label><input type="checkbox" name="色彩感觉" value="温馨木色"><span>温馨木色</span></label>
+    <label><input type="checkbox" name="色彩感觉" value="美拉德色系"><span>美拉德色系</span></label>
+    <label><input type="checkbox" name="色彩感觉" value="马卡龙色系"><span>马卡龙色系</span></label>
+    <label><input type="checkbox" name="色彩感觉" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="色彩感觉_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">整体氛围</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="整体氛围" value="温馨治愈"><span>温馨治愈</span></label>
+    <label><input type="checkbox" name="整体氛围" value="简洁利落"><span>简洁利落</span></label>
+    <label><input type="checkbox" name="整体氛围" value="沉稳大气"><span>沉稳大气</span></label>
+    <label><input type="checkbox" name="整体氛围" value="活泼有趣"><span>活泼有趣</span></label>
+    <label><input type="checkbox" name="整体氛围" value="艺术感强"><span>艺术感强</span></label>
+    <label><input type="checkbox" name="整体氛围" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="整体氛围_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 5. 预算与取舍 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>预算与取舍</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">装修硬装预算<br><small style="font-weight:normal;color:var(--light-text)">房屋拆改、水电、泥工、木工、油漆</small></span>
+  <div class="radio-grid">
+    <label><input type="radio" name="硬装预算" value="5~10万"><span>5~10万</span></label>
+    <label><input type="radio" name="硬装预算" value="11~15万"><span>11~15万</span></label>
+    <label><input type="radio" name="硬装预算" value="16~20万"><span>16~20万</span></label>
+    <label><input type="radio" name="硬装预算" value="21万以上"><span>21万以上</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">装修主材和定制预算<br><small style="font-weight:normal;color:var(--light-text)">瓷砖、定制柜、门、地脚线、石膏线</small></span>
+  <div class="radio-grid">
+    <label><input type="radio" name="主材定制预算" value="3~5万"><span>3~5万</span></label>
+    <label><input type="radio" name="主材定制预算" value="6~8万"><span>6~8万</span></label>
+    <label><input type="radio" name="主材定制预算" value="9~11万"><span>9~11万</span></label>
+    <label><input type="radio" name="主材定制预算" value="12万以上"><span>12万以上</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">装修软装预算<br><small style="font-weight:normal;color:var(--light-text)">沙发、床、椅子</small></span>
+  <div class="radio-grid">
+    <label><input type="radio" name="软装预算" value="3~5万"><span>3~5万</span></label>
+    <label><input type="radio" name="软装预算" value="6~8万"><span>6~8万</span></label>
+    <label><input type="radio" name="软装预算" value="9~11万"><span>9~11万</span></label>
+    <label><input type="radio" name="软装预算" value="12万以上"><span>12万以上</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">装修电器预算</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="电器预算" value="2~4万"><span>2~4万</span></label>
+    <label><input type="radio" name="电器预算" value="5~7万"><span>5~7万</span></label>
+    <label><input type="radio" name="电器预算" value="8~10万"><span>8~10万</span></label>
+    <label><input type="radio" name="电器预算" value="11万以上"><span>11万以上</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">冲突 VS（填写 &gt; 或 &lt;）</span>
+  <div class="sub-section">
+    <div class="vs-row">
+      <span class="vs-label">风水</span>
+      <select name="vs_风水功能"><option value="">&lt;</option><option value=">">&gt;</option></select>
+      <span class="vs-text">vs</span>
+      <select name="vs_风水功能2"><option value="">&lt;</option><option value=">">&gt;</option></select>
+      <span class="vs-label">功能</span>
+    </div>
+    <div class="vs-row">
+      <span class="vs-label">美观</span>
+      <select name="vs_美观功能"><option value="">&lt;</option><option value=">">&gt;</option></select>
+      <span class="vs-text">vs</span>
+      <select name="vs_美观功能2"><option value="">&lt;</option><option value=">">&gt;</option></select>
+      <span class="vs-label">功能</span>
+    </div>
+    <div class="vs-row">
+      <span class="vs-label">采光通风</span>
+      <select name="vs_采光隐私"><option value="">&lt;</option><option value=">">&gt;</option></select>
+      <span class="vs-text">vs</span>
+      <select name="vs_采光隐私2"><option value="">&lt;</option><option value=">">&gt;</option></select>
+      <span class="vs-label">隐私</span>
+    </div>
+    <div class="vs-row">
+      <span class="vs-label">收纳</span>
+      <select name="vs_收纳开阔"><option value="">&lt;</option><option value=">">&gt;</option></select>
+      <span class="vs-text">vs</span>
+      <select name="vs_收纳开阔2"><option value="">&lt;</option><option value=">">&gt;</option></select>
+      <span class="vs-label">空间开阔感</span>
+    </div>
+    <div class="vs-row">
+      <span class="vs-label">女业主需求</span>
+      <select name="vs_女男"><option value="">&lt;</option><option value=">">&gt;</option></select>
+      <span class="vs-text">vs</span>
+      <select name="vs_女男2"><option value="">&lt;</option><option value=">">&gt;</option></select>
+      <span class="vs-label">男业主需求</span>
+    </div>
+    <div class="vs-row">
+      <span class="vs-label">预算成本</span>
+      <select name="vs_预算设计"><option value="">&lt;</option><option value=">">&gt;</option></select>
+      <span class="vs-text">vs</span>
+      <select name="vs_预算设计2"><option value="">&lt;</option><option value=">">&gt;</option></select>
+      <span class="vs-label">设计理想</span>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 6. 全屋设备 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>全屋设备</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">空调系统</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="空调系统" value="全屋中央空调"><span>全屋中央空调</span></label>
+    <label><input type="radio" name="空调系统" value="全屋风管机"><span>全屋风管机</span></label>
+    <label><input type="radio" name="空调系统" value="客餐厅+主要房间中央空调+部分房间壁挂空调"><span>客餐厅+主要房间中央空调+部分房间壁挂空调</span></label>
+    <label><input type="radio" name="空调系统" value="客餐厅+主要房间风管机+部分房间壁挂空调"><span>客餐厅+主要房间风管机+部分房间壁挂空调</span></label>
+    <label><input type="radio" name="空调系统" value="客餐厅风管机/中央空调+房间壁挂空调"><span>客餐厅风管机/中央空调+房间壁挂空调</span></label>
+    <label><input type="radio" name="空调系统" value="客餐厅立式空调+房间壁挂空调"><span>客餐厅立式空调+房间壁挂空调</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">供暖系统</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="供暖系统" value="地暖"><span>地暖</span></label>
+    <label><input type="checkbox" name="供暖系统" value="壁挂炉散热器"><span>壁挂炉散热器</span></label>
+    <label><input type="checkbox" name="供暖系统" value="真火壁炉"><span>真火壁炉</span></label>
+    <label><input type="checkbox" name="供暖系统" value="冷暖空调"><span>冷暖空调</span></label>
+    <label><input type="checkbox" name="供暖系统" value="无"><span>无</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">新风系统</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="新风系统" value="全房新风系统"><span>全房新风系统</span></label>
+    <label><input type="radio" name="新风系统" value="主要空间新风系统"><span>主要空间新风系统</span></label>
+    <label><input type="radio" name="新风系统" value="无"><span>无</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">水处理系统（多选）</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="水处理系统" value="中央净水系统"><span>中央净水系统</span></label>
+    <label><input type="checkbox" name="水处理系统" value="中央软水系统"><span>中央软水系统</span></label>
+    <label><input type="checkbox" name="水处理系统" value="前置过滤器"><span>前置过滤器</span></label>
+    <label><input type="checkbox" name="水处理系统" value="净水器"><span>净水器</span></label>
+    <label><input type="checkbox" name="水处理系统" value="直饮水机"><span>直饮水机</span></label>
+    <label><input type="checkbox" name="水处理系统" value="无"><span>无</span></label>
+    <label><input type="checkbox" name="水处理系统" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="水处理系统_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">热水系统</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="热水系统" value="燃气热水器"><span>燃气热水器</span></label>
+    <label><input type="checkbox" name="热水系统" value="电热水器"><span>电热水器</span></label>
+    <label><input type="checkbox" name="热水系统" value="壁挂炉"><span>壁挂炉</span></label>
+    <label><input type="checkbox" name="热水系统" value="空气能"><span>空气能</span></label>
+    <label><input type="checkbox" name="热水系统" value="太阳能"><span>太阳能</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">智能家居</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="智能家居" value="安防"><span>安防</span></label>
+    <label><input type="checkbox" name="智能家居" value="背景音"><span>背景音</span></label>
+    <label><input type="checkbox" name="智能家居" value="智能开关"><span>智能开关</span></label>
+    <label><input type="checkbox" name="智能家居" value="智能灯光"><span>智能灯光</span></label>
+    <label><input type="checkbox" name="智能家居" value="电动窗帘"><span>电动窗帘</span></label>
+    <label><input type="checkbox" name="智能家居" value="无"><span>无</span></label>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 7. 设计需求 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>设计需求</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">地板</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="地板" value="全房瓷砖"><span>全房瓷砖</span></label>
+    <label><input type="radio" name="地板" value="公共区域瓷砖+房间木地板"><span>公共区域瓷砖+房间木地板</span></label>
+    <label><input type="radio" name="地板" value="湿区瓷砖+全房木地板"><span>湿区瓷砖+全房木地板</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">瓷砖尺寸</span>
+  <span class="q-sub-label">公共区域</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="瓷砖_公共区域" value="800*800"><span>800×800</span></label>
+    <label><input type="checkbox" name="瓷砖_公共区域" value="600*1200"><span>600×1200</span></label>
+    <label><input type="checkbox" name="瓷砖_公共区域" value="750*1500"><span>750×1500</span></label>
+    <label><input type="checkbox" name="瓷砖_公共区域" value="900*1800"><span>900×1800</span></label>
+    <label><input type="checkbox" name="瓷砖_公共区域" value="无要求"><span>无要求</span></label>
+  </div>
+  <span class="q-sub-label">房间</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="瓷砖_房间" value="800*800"><span>800×800</span></label>
+    <label><input type="checkbox" name="瓷砖_房间" value="600*1200"><span>600×1200</span></label>
+    <label><input type="checkbox" name="瓷砖_房间" value="750*1500"><span>750×1500</span></label>
+    <label><input type="checkbox" name="瓷砖_房间" value="无要求"><span>无要求</span></label>
+  </div>
+  <span class="q-sub-label">卫生间</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="瓷砖_卫生间" value="200*200"><span>200×200</span></label>
+    <label><input type="checkbox" name="瓷砖_卫生间" value="400*400"><span>400×400</span></label>
+    <label><input type="checkbox" name="瓷砖_卫生间" value="600*600"><span>600×600</span></label>
+    <label><input type="checkbox" name="瓷砖_卫生间" value="无要求"><span>无要求</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">灯光</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="灯光" value="全房无主灯"><span>全房无主灯</span></label>
+    <label><input type="radio" name="灯光" value="公共区域无主灯+房间主灯"><span>公共区域无主灯+房间主灯</span></label>
+    <label><input type="radio" name="灯光" value="全房主灯设计"><span>全房主灯设计</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">灯具（多选）</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="灯具" value="吸顶灯"><span>吸顶灯</span></label>
+    <label><input type="checkbox" name="灯具" value="吊灯"><span>吊灯</span></label>
+    <label><input type="checkbox" name="灯具" value="风扇灯"><span>风扇灯</span></label>
+    <label><input type="checkbox" name="灯具" value="轨道灯"><span>轨道灯</span></label>
+    <label><input type="checkbox" name="灯具" value="筒灯"><span>筒灯</span></label>
+    <label><input type="checkbox" name="灯具" value="落地灯"><span>落地灯</span></label>
+    <label><input type="checkbox" name="灯具" value="射灯"><span>射灯</span></label>
+    <label><input type="checkbox" name="灯具" value="灯带"><span>灯带</span></label>
+    <label><input type="checkbox" name="灯具" value="小吊灯"><span>小吊灯</span></label>
+    <label><input type="checkbox" name="灯具" value="壁灯"><span>壁灯</span></label>
+    <label><input type="checkbox" name="灯具" value="感应夜灯"><span>感应夜灯</span></label>
+    <label><input type="checkbox" name="灯具" value="软膜灯"><span>软膜灯</span></label>
+    <label><input type="checkbox" name="灯具" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="灯具_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">卫生间吊顶</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="卫生间吊顶" value="石膏板"><span>石膏板</span></label>
+    <label><input type="radio" name="卫生间吊顶" value="蜂窝大板"><span>蜂窝大板</span></label>
+    <label><input type="radio" name="卫生间吊顶" value="铝扣板"><span>铝扣板</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">厨房吊顶</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="厨房吊顶" value="石膏板"><span>石膏板</span></label>
+    <label><input type="radio" name="厨房吊顶" value="蜂窝大板"><span>蜂窝大板</span></label>
+    <label><input type="radio" name="厨房吊顶" value="铝扣板"><span>铝扣板</span></label>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">石膏线设计（可多选）</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="石膏线" value="无"><span>无</span></label>
+    <label><input type="checkbox" name="石膏线" value="单眼皮"><span>单眼皮</span></label>
+    <label><input type="checkbox" name="石膏线" value="双眼皮"><span>双眼皮</span></label>
+    <label><input type="checkbox" name="石膏线" value="虎头线"><span>虎头线</span></label>
+    <label><input type="checkbox" name="石膏线" value="花瓣线"><span>花瓣线</span></label>
+    <label><input type="checkbox" name="石膏线" value="S线"><span>S线</span></label>
+    <label><input type="checkbox" name="石膏线" value="C线"><span>C线</span></label>
+    <label><input type="checkbox" name="石膏线" value="瓦楞线"><span>瓦楞线</span></label>
+    <label><input type="checkbox" name="石膏线" value="根据设计风格决定"><span>根据设计风格决定</span></label>
+    <label><input type="checkbox" name="石膏线" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="石膏线_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+
+<div class="section">
+<div class="question">
+  <span class="q-label">窗帘</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="窗帘" value="客厅双帘"><span>客厅双帘</span></label>
+    <label><input type="checkbox" name="窗帘" value="客厅单帘"><span>客厅单帘</span></label>
+    <label><input type="checkbox" name="窗帘" value="房间双帘"><span>房间双帘</span></label>
+    <label><input type="checkbox" name="窗帘" value="房间单帘"><span>房间单帘</span></label>
+    <label><input type="checkbox" name="窗帘" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="窗帘_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 8. 玄关 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>玄关</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">玄关柜</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="玄关柜" value="换鞋凳"><span>换鞋凳</span></label>
+    <label><input type="checkbox" name="玄关柜" value="镜子"><span>镜子</span></label>
+    <label><input type="checkbox" name="玄关柜" value="挂钩洞洞板"><span>挂钩/洞洞板</span></label>
+    <label><input type="checkbox" name="玄关柜" value="高跟鞋"><span>高跟鞋</span></label>
+    <label><input type="checkbox" name="玄关柜" value="高帮鞋"><span>高帮鞋</span></label>
+    <label><input type="checkbox" name="玄关柜" value="长靴"><span>长靴</span></label>
+    <label><input type="checkbox" name="玄关柜" value="开放格"><span>开放格</span></label>
+    <label><input type="checkbox" name="玄关柜" value="踢脚抽"><span>踢脚抽</span></label>
+    <label><input type="checkbox" name="玄关柜" value="烘鞋机"><span>烘鞋机</span></label>
+    <label><input type="checkbox" name="玄关柜" value="旋转鞋架"><span>旋转鞋架</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">鞋子总体数量</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="鞋子数量" value="6~12双"><span>6~12双</span></label>
+    <label><input type="radio" name="鞋子数量" value="13~25双"><span>13~25双</span></label>
+    <label><input type="radio" name="鞋子数量" value="26~45双"><span>26~45双</span></label>
+    <label><input type="radio" name="鞋子数量" value="46双以上"><span>46双以上</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">收纳需求</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="玄关收纳" value="钥匙"><span>钥匙</span></label>
+    <label><input type="checkbox" name="玄关收纳" value="挎包"><span>挎包</span></label>
+    <label><input type="checkbox" name="玄关收纳" value="衣服"><span>衣服</span></label>
+    <label><input type="checkbox" name="玄关收纳" value="购物袋"><span>购物袋</span></label>
+    <label><input type="checkbox" name="玄关收纳" value="鞋子"><span>鞋子</span></label>
+    <label><input type="checkbox" name="玄关收纳" value="雨伞"><span>雨伞</span></label>
+    <label><input type="checkbox" name="玄关收纳" value="快递"><span>快递</span></label>
+    <label><input type="checkbox" name="玄关收纳" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="玄关收纳_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他需求</span>
+  <textarea name="玄关_其他需求" placeholder="请输入" rows="2"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 9. 客厅 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>客厅</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">主要功能</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="客厅功能" value="家人放松"><span>家人放松</span></label>
+    <label><input type="checkbox" name="客厅功能" value="看电视电影"><span>看电视/电影</span></label>
+    <label><input type="checkbox" name="客厅功能" value="朋友聚会"><span>朋友聚会</span></label>
+    <label><input type="checkbox" name="客厅功能" value="阅读"><span>阅读</span></label>
+    <label><input type="checkbox" name="客厅功能" value="儿童玩耍"><span>儿童玩耍</span></label>
+    <label><input type="checkbox" name="客厅功能" value="健身"><span>健身</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">影音需求</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="影音需求" value="壁挂电视"><span>壁挂电视</span></label>
+    <label><input type="checkbox" name="影音需求" value="移动电视"><span>移动电视</span></label>
+    <label><input type="checkbox" name="影音需求" value="投影幕布"><span>投影幕布</span></label>
+    <label><input type="checkbox" name="影音需求" value="家庭影院"><span>家庭影院</span></label>
+    <label><input type="checkbox" name="影音需求" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="影音需求_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">造型/背景墙</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="背景墙" value="电视背景墙"><span>电视背景墙</span></label>
+    <label><input type="checkbox" name="背景墙" value="电视柜"><span>电视柜</span></label>
+    <label><input type="checkbox" name="背景墙" value="沙发背景墙"><span>沙发背景墙</span></label>
+    <label><input type="checkbox" name="背景墙" value="无"><span>无</span></label>
+    <label><input type="checkbox" name="背景墙" value="看情况"><span>看情况</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">沙发偏好</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="沙发偏好" value="一字型"><span>一字型</span></label>
+    <label><input type="radio" name="沙发偏好" value="L型"><span>L型</span></label>
+    <label><input type="radio" name="沙发偏好" value="组合式"><span>组合式</span></label>
+    <label><input type="radio" name="沙发偏好" value="均可"><span>均可</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">软装</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="客厅软装" value="沙发"><span>沙发</span></label>
+    <label><input type="checkbox" name="客厅软装" value="单人椅"><span>单人椅</span></label>
+    <label><input type="checkbox" name="客厅软装" value="茶几"><span>茶几</span></label>
+    <label><input type="checkbox" name="客厅软装" value="边几"><span>边几</span></label>
+    <label><input type="checkbox" name="客厅软装" value="地毯"><span>地毯</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他需求</span>
+  <textarea name="客厅_其他需求" placeholder="请输入" rows="2"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 10. 餐厅&厨房 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>餐厅 &amp; 厨房</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">餐桌款式</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="餐桌款式" value="圆桌"><span>圆桌</span></label>
+    <label><input type="radio" name="餐桌款式" value="方桌"><span>方桌</span></label>
+    <label><input type="radio" name="餐桌款式" value="均可（根据户型空间设计）"><span>均可（根据户型空间设计）</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">冰箱放置位置</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="冰箱位置" value="餐厅"><span>餐厅</span></label>
+    <label><input type="radio" name="冰箱位置" value="厨房"><span>厨房</span></label>
+    <label><input type="radio" name="冰箱位置" value="根据户型设计摆放"><span>根据户型设计摆放</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">冰箱情况</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="冰箱外观" value="内嵌"><span>内嵌</span></label>
+    <label><input type="checkbox" name="冰箱外观" value="裸露"><span>裸露</span></label>
+    <label><input type="checkbox" name="冰箱外观" value="均可"><span>均可</span></label>
+  </div>
+  <div class="checkbox-grid" style="margin-top:8px">
+    <label><input type="checkbox" name="冰箱数量" value="1个冰箱"><span>1个冰箱</span></label>
+    <label><input type="checkbox" name="冰箱数量" value="2个冰箱"><span>2个冰箱</span></label>
+    <label><input type="checkbox" name="冰箱数量" value="多个冰箱"><span>多个冰箱</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">收纳需求</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="餐厅收纳" value="酒柜"><span>酒柜</span></label>
+    <label><input type="checkbox" name="餐厅收纳" value="餐边柜"><span>餐边柜</span></label>
+    <label><input type="checkbox" name="餐厅收纳" value="陈列柜"><span>陈列柜</span></label>
+    <label><input type="checkbox" name="餐厅收纳" value="电器柜"><span>电器柜</span></label>
+    <label><input type="checkbox" name="餐厅收纳" value="零食柜"><span>零食柜</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">岛台需求</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="岛台需求" value="是"><span>是</span></label>
+    <label><input type="radio" name="岛台需求" value="否"><span>否</span></label>
+    <label><input type="radio" name="岛台需求" value="根据户型设计"><span>根据户型设计</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">岛台设计</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="岛台设计" value="餐岛一体"><span>餐岛一体</span></label>
+    <label><input type="checkbox" name="岛台设计" value="纯操作岛台"><span>纯操作岛台</span></label>
+    <label><input type="checkbox" name="岛台设计" value="水槽岛台"><span>水槽岛台</span></label>
+    <label><input type="checkbox" name="岛台设计" value="电器岛台"><span>电器岛台</span></label>
+    <label><input type="checkbox" name="岛台设计" value="均可"><span>均可</span></label>
+    <label><input type="checkbox" name="岛台设计" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="岛台设计_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">橱柜</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="橱柜" value="地柜高低台"><span>地柜高低台</span></label>
+    <label><input type="checkbox" name="橱柜" value="吊柜"><span>吊柜</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">厨房使用人身高</span>
+  <input type="text" name="厨房使用人身高" placeholder="请输入身高(cm)">
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">厨房格局偏好</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="厨房格局" value="开放式"><span>开放式</span></label>
+    <label><input type="radio" name="厨房格局" value="半开放式"><span>半开放式</span></label>
+    <label><input type="radio" name="厨房格局" value="封闭式"><span>封闭式</span></label>
+    <label><input type="radio" name="厨房格局" value="根据户型空间设计"><span>根据户型空间设计</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">厨房同时操作人数</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="厨房人数" value="1人"><span>1人</span></label>
+    <label><input type="radio" name="厨房人数" value="2人"><span>2人</span></label>
+    <label><input type="radio" name="厨房人数" value="3人"><span>3人</span></label>
+    <label><input type="radio" name="厨房人数" value="4人以上"><span>4人以上</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">电器设备</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="厨房电器" value="消毒柜"><span>消毒柜</span></label>
+    <label><input type="checkbox" name="厨房电器" value="洗碗机"><span>洗碗机</span></label>
+    <label><input type="checkbox" name="厨房电器" value="油烟机"><span>油烟机</span></label>
+    <label><input type="checkbox" name="厨房电器" value="灶具"><span>灶具</span></label>
+    <label><input type="checkbox" name="厨房电器" value="集成灶"><span>集成灶</span></label>
+    <label><input type="checkbox" name="厨房电器" value="烤箱"><span>烤箱</span></label>
+    <label><input type="checkbox" name="厨房电器" value="蒸箱"><span>蒸箱</span></label>
+    <label><input type="checkbox" name="厨房电器" value="微波炉"><span>微波炉</span></label>
+    <label><input type="checkbox" name="厨房电器" value="蒸烤一体"><span>蒸烤一体</span></label>
+    <label><input type="checkbox" name="厨房电器" value="微蒸烤一体"><span>微蒸烤一体</span></label>
+    <label><input type="checkbox" name="厨房电器" value="电磁炉"><span>电磁炉</span></label>
+    <label><input type="checkbox" name="厨房电器" value="垃圾处理器"><span>垃圾处理器</span></label>
+    <label><input type="checkbox" name="厨房电器" value="小厨宝"><span>小厨宝</span></label>
+    <label><input type="checkbox" name="厨房电器" value="榨汁机"><span>榨汁机</span></label>
+    <label><input type="checkbox" name="厨房电器" value="面包机"><span>面包机</span></label>
+    <label><input type="checkbox" name="厨房电器" value="豆浆机"><span>豆浆机</span></label>
+    <label><input type="checkbox" name="厨房电器" value="咖啡机"><span>咖啡机</span></label>
+    <label><input type="checkbox" name="厨房电器" value="酸奶机"><span>酸奶机</span></label>
+    <label><input type="checkbox" name="厨房电器" value="直饮机"><span>直饮机</span></label>
+    <label><input type="checkbox" name="厨房电器" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="厨房电器_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">五金拉篮</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="五金拉篮" value="骑马抽"><span>骑马抽</span></label>
+    <label><input type="checkbox" name="五金拉篮" value="碗碟拉篮"><span>碗碟拉篮</span></label>
+    <label><input type="checkbox" name="五金拉篮" value="调味拉篮"><span>调味拉篮</span></label>
+    <label><input type="checkbox" name="五金拉篮" value="转角拉篮"><span>转角拉篮</span></label>
+    <label><input type="checkbox" name="五金拉篮" value="高柜拉篮"><span>高柜拉篮</span></label>
+    <label><input type="checkbox" name="五金拉篮" value="吊柜下拉拉篮"><span>吊柜下拉拉篮</span></label>
+    <label><input type="checkbox" name="五金拉篮" value="洗碗机上方超薄抽屉拉篮"><span>洗碗机上方超薄抽屉拉篮</span></label>
+    <label><input type="checkbox" name="五金拉篮" value="调味升降拉篮"><span>调味升降拉篮</span></label>
+    <label><input type="checkbox" name="五金拉篮" value="功能拉篮"><span>功能拉篮</span></label>
+    <label><input type="checkbox" name="五金拉篮" value="抽拉置物架"><span>抽拉置物架</span></label>
+    <label><input type="checkbox" name="五金拉篮" value="小推车拉篮"><span>小推车拉篮</span></label>
+    <label><input type="checkbox" name="五金拉篮" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="五金拉篮_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他需求</span>
+  <textarea name="餐厅厨房_其他需求" placeholder="请输入" rows="2"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 11. 主卫 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>主卫</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">设备</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="主卫_设备" value="浴缸"><span>浴缸</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="普通蹲坑"><span>普通蹲坑</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="暗藏式蹲坑"><span>暗藏式蹲坑</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="明装花洒"><span>明装花洒</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="预埋式花洒"><span>预埋式花洒</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="壁挂马桶"><span>壁挂马桶</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="明装水龙头"><span>明装水龙头</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="预埋水龙头"><span>预埋水龙头</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="普通马桶"><span>普通马桶</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="智能马桶"><span>智能马桶</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="壁龛"><span>壁龛</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="小便斗"><span>小便斗</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="适老化设计"><span>适老化设计</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="普通毛巾架"><span>普通毛巾架</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="电热毛巾架"><span>电热毛巾架</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="双台盆"><span>双台盆</span></label>
+    <label><input type="checkbox" name="主卫_设备" value="泡脚桶"><span>泡脚桶</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">淋浴隔断</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="主卫_淋浴隔断" value="固定扇隔断"><span>固定扇隔断</span></label>
+    <label><input type="checkbox" name="主卫_淋浴隔断" value="一字型隔断"><span>一字型隔断</span></label>
+    <label><input type="checkbox" name="主卫_淋浴隔断" value="钻石型隔断"><span>钻石型隔断</span></label>
+    <label><input type="checkbox" name="主卫_淋浴隔断" value="圆弧隔断"><span>圆弧隔断</span></label>
+    <label><input type="checkbox" name="主卫_淋浴隔断" value="布帘"><span>布帘</span></label>
+    <label><input type="checkbox" name="主卫_淋浴隔断" value="无"><span>无</span></label>
+    <label><input type="checkbox" name="主卫_淋浴隔断" value="根据户型设计"><span>根据户型设计</span></label>
+    <label><input type="checkbox" name="主卫_淋浴隔断" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="主卫_淋浴隔断_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">花洒下方是否留水龙头</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="主卫_花洒水龙头" value="是"><span>是</span></label>
+    <label><input type="radio" name="主卫_花洒水龙头" value="否"><span>否</span></label>
+    <label><input type="radio" name="主卫_花洒水龙头" value="待定"><span>待定</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">储物需求</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="主卫_储物" value="少"><span>少</span></label>
+    <label><input type="radio" name="主卫_储物" value="一般"><span>一般</span></label>
+    <label><input type="radio" name="主卫_储物" value="很多"><span>很多</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他需求</span>
+  <div class="sub-section">
+    <div class="two-col">
+      <div>
+        <span class="q-sub-label" style="margin-top:0">化妆</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="主卫_化妆" value="是"><span>是</span></label>
+          <label><input type="radio" name="主卫_化妆" value="否"><span>否</span></label>
+        </div>
+      </div>
+      <div>
+        <span class="q-sub-label" style="margin-top:0">浴室柜</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="主卫_浴室柜" value="成品"><span>成品</span></label>
+          <label><input type="radio" name="主卫_浴室柜" value="定制"><span>定制</span></label>
+        </div>
+      </div>
+    </div>
+    <div class="two-col" style="margin-top:12px">
+      <div>
+        <span class="q-sub-label" style="margin-top:0">干湿分离</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="主卫_干湿分离" value="无"><span>无</span></label>
+          <label><input type="radio" name="主卫_干湿分离" value="二分离"><span>二分离</span></label>
+          <label><input type="radio" name="主卫_干湿分离" value="三分离"><span>三分离</span></label>
+        </div>
+      </div>
+      <div>
+        <span class="q-sub-label" style="margin-top:0">浴室镜</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="主卫_浴室镜" value="镜柜"><span>镜柜</span></label>
+          <label><input type="radio" name="主卫_浴室镜" value="单镜"><span>单镜</span></label>
+        </div>
+      </div>
+    </div>
+    <div class="two-col" style="margin-top:12px">
+      <div>
+        <span class="q-sub-label" style="margin-top:0">淋浴区下沉</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="主卫_淋浴下沉" value="是"><span>是</span></label>
+          <label><input type="radio" name="主卫_淋浴下沉" value="否"><span>否</span></label>
+        </div>
+      </div>
+      <div>
+        <span class="q-sub-label" style="margin-top:0">妇洗器</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="主卫_妇洗器" value="是"><span>是</span></label>
+          <label><input type="radio" name="主卫_妇洗器" value="否"><span>否</span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <textarea name="主卫_其他需求" placeholder="其他需求" class="remark-input"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 12. 公卫 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>公卫</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">设备</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="公卫_设备" value="浴缸"><span>浴缸</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="普通蹲坑"><span>普通蹲坑</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="暗藏式蹲坑"><span>暗藏式蹲坑</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="明装花洒"><span>明装花洒</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="预埋式花洒"><span>预埋式花洒</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="壁挂马桶"><span>壁挂马桶</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="明装水龙头"><span>明装水龙头</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="预埋水龙头"><span>预埋水龙头</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="普通马桶"><span>普通马桶</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="智能马桶"><span>智能马桶</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="壁龛"><span>壁龛</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="小便斗"><span>小便斗</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="适老化设计"><span>适老化设计</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="普通毛巾架"><span>普通毛巾架</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="电热毛巾架"><span>电热毛巾架</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="双台盆"><span>双台盆</span></label>
+    <label><input type="checkbox" name="公卫_设备" value="泡脚桶"><span>泡脚桶</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">淋浴隔断</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="公卫_淋浴隔断" value="固定扇隔断"><span>固定扇隔断</span></label>
+    <label><input type="checkbox" name="公卫_淋浴隔断" value="一字型隔断"><span>一字型隔断</span></label>
+    <label><input type="checkbox" name="公卫_淋浴隔断" value="钻石型隔断"><span>钻石型隔断</span></label>
+    <label><input type="checkbox" name="公卫_淋浴隔断" value="圆弧隔断"><span>圆弧隔断</span></label>
+    <label><input type="checkbox" name="公卫_淋浴隔断" value="布帘"><span>布帘</span></label>
+    <label><input type="checkbox" name="公卫_淋浴隔断" value="无"><span>无</span></label>
+    <label><input type="checkbox" name="公卫_淋浴隔断" value="根据户型设计"><span>根据户型设计</span></label>
+    <label><input type="checkbox" name="公卫_淋浴隔断" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="公卫_淋浴隔断_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">花洒下方是否留水龙头</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="公卫_花洒水龙头" value="是"><span>是</span></label>
+    <label><input type="radio" name="公卫_花洒水龙头" value="否"><span>否</span></label>
+    <label><input type="radio" name="公卫_花洒水龙头" value="待定"><span>待定</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">储物需求</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="公卫_储物" value="少"><span>少</span></label>
+    <label><input type="radio" name="公卫_储物" value="一般"><span>一般</span></label>
+    <label><input type="radio" name="公卫_储物" value="很多"><span>很多</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他需求</span>
+  <div class="sub-section">
+    <div class="two-col">
+      <div>
+        <span class="q-sub-label" style="margin-top:0">化妆</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="公卫_化妆" value="是"><span>是</span></label>
+          <label><input type="radio" name="公卫_化妆" value="否"><span>否</span></label>
+        </div>
+      </div>
+      <div>
+        <span class="q-sub-label" style="margin-top:0">浴室柜</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="公卫_浴室柜" value="成品"><span>成品</span></label>
+          <label><input type="radio" name="公卫_浴室柜" value="定制"><span>定制</span></label>
+        </div>
+      </div>
+    </div>
+    <div class="two-col" style="margin-top:12px">
+      <div>
+        <span class="q-sub-label" style="margin-top:0">干湿分离</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="公卫_干湿分离" value="无"><span>无</span></label>
+          <label><input type="radio" name="公卫_干湿分离" value="二分离"><span>二分离</span></label>
+          <label><input type="radio" name="公卫_干湿分离" value="三分离"><span>三分离</span></label>
+        </div>
+      </div>
+      <div>
+        <span class="q-sub-label" style="margin-top:0">浴室镜</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="公卫_浴室镜" value="镜柜"><span>镜柜</span></label>
+          <label><input type="radio" name="公卫_浴室镜" value="单镜"><span>单镜</span></label>
+        </div>
+      </div>
+    </div>
+    <div class="two-col" style="margin-top:12px">
+      <div>
+        <span class="q-sub-label" style="margin-top:0">淋浴区下沉</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="公卫_淋浴下沉" value="是"><span>是</span></label>
+          <label><input type="radio" name="公卫_淋浴下沉" value="否"><span>否</span></label>
+        </div>
+      </div>
+      <div>
+        <span class="q-sub-label" style="margin-top:0">妇洗器</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="公卫_妇洗器" value="是"><span>是</span></label>
+          <label><input type="radio" name="公卫_妇洗器" value="否"><span>否</span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <textarea name="公卫_其他需求" placeholder="其他需求" class="remark-input"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 13. 洗衣&晾晒 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>洗衣 &amp; 晾晒</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">洗衣机理想区域</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="洗衣机区域" value="客厅阳台"><span>客厅阳台</span></label>
+    <label><input type="checkbox" name="洗衣机区域" value="生活阳台"><span>生活阳台</span></label>
+    <label><input type="checkbox" name="洗衣机区域" value="主卫"><span>主卫</span></label>
+    <label><input type="checkbox" name="洗衣机区域" value="公卫"><span>公卫</span></label>
+    <label><input type="checkbox" name="洗衣机区域" value="衣帽间"><span>衣帽间</span></label>
+    <label><input type="checkbox" name="洗衣机区域" value="根据户型设计"><span>根据户型设计</span></label>
+    <label><input type="checkbox" name="洗衣机区域" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="洗衣机区域_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">晒衣服理想区域</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="晒衣区域" value="客厅阳台"><span>客厅阳台</span></label>
+    <label><input type="checkbox" name="晒衣区域" value="生活阳台"><span>生活阳台</span></label>
+    <label><input type="checkbox" name="晒衣区域" value="不晒"><span>不晒</span></label>
+    <label><input type="checkbox" name="晒衣区域" value="根据户型设计"><span>根据户型设计</span></label>
+    <label><input type="checkbox" name="晒衣区域" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="晒衣区域_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">晒衣服区域封窗</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="晒衣封窗" value="封窗"><span>封窗</span></label>
+    <label><input type="radio" name="晒衣封窗" value="不封窗"><span>不封窗</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">洗衣设备</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="洗衣设备" value="洗衣机"><span>洗衣机</span></label>
+    <label><input type="checkbox" name="洗衣设备" value="烘干机"><span>烘干机</span></label>
+    <label><input type="checkbox" name="洗衣设备" value="洗烘一体机"><span>洗烘一体机</span></label>
+    <label><input type="checkbox" name="洗衣设备" value="壁挂台面洗衣机"><span>壁挂/台面洗衣机</span></label>
+    <label><input type="checkbox" name="洗衣设备" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="洗衣设备_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">壁挂/台面洗衣机放置区域</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="壁挂洗衣机区域" value="无"><span>无</span></label>
+    <label><input type="checkbox" name="壁挂洗衣机区域" value="客厅阳台"><span>客厅阳台</span></label>
+    <label><input type="checkbox" name="壁挂洗衣机区域" value="生活阳台"><span>生活阳台</span></label>
+    <label><input type="checkbox" name="壁挂洗衣机区域" value="主卫"><span>主卫</span></label>
+    <label><input type="checkbox" name="壁挂洗衣机区域" value="公卫"><span>公卫</span></label>
+    <label><input type="checkbox" name="壁挂洗衣机区域" value="衣帽间"><span>衣帽间</span></label>
+    <label><input type="checkbox" name="壁挂洗衣机区域" value="根据户型设计"><span>根据户型设计</span></label>
+    <label><input type="checkbox" name="壁挂洗衣机区域" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="壁挂洗衣机区域_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">晾衣架</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="晾衣架" value="无"><span>无</span></label>
+    <label><input type="checkbox" name="晾衣架" value="隐藏晾衣架"><span>隐藏晾衣架</span></label>
+    <label><input type="checkbox" name="晾衣架" value="电动晾衣架"><span>电动晾衣架</span></label>
+    <label><input type="checkbox" name="晾衣架" value="手摇晾衣架"><span>手摇晾衣架</span></label>
+    <label><input type="checkbox" name="晾衣架" value="外扩伸缩晾衣架"><span>外扩伸缩晾衣架</span></label>
+    <label><input type="checkbox" name="晾衣架" value="固定晾衣架"><span>固定晾衣架</span></label>
+    <label><input type="checkbox" name="晾衣架" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="晾衣架_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">洗衣池 / 拖把池 / 熨烫区域</span>
+  <div class="sub-section">
+    <div class="two-col">
+      <div>
+        <span class="q-sub-label" style="margin-top:0">洗衣池</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="洗衣池" value="需要"><span>需要</span></label>
+          <label><input type="radio" name="洗衣池" value="不需要"><span>不需要</span></label>
+        </div>
+      </div>
+      <div>
+        <span class="q-sub-label" style="margin-top:0">拖把池</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="拖把池" value="需要"><span>需要</span></label>
+          <label><input type="radio" name="拖把池" value="不需要"><span>不需要</span></label>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12px">
+      <span class="q-sub-label" style="margin-top:0">熨烫区域</span>
+      <div class="radio-grid">
+        <label><input type="radio" name="熨烫区域" value="需要"><span>需要</span></label>
+        <label><input type="radio" name="熨烫区域" value="不需要"><span>不需要</span></label>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他需求</span>
+  <textarea name="洗衣晾晒_其他需求" placeholder="请输入" rows="2"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 14. 客厅阳台 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>客厅阳台</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">是否封闭</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="客厅阳台_封闭" value="封闭阳台纳入室内空间"><span>封闭阳台纳入室内空间</span></label>
+    <label><input type="radio" name="客厅阳台_封闭" value="不封阳台半室外空间"><span>不封阳台 半室外空间</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">功能需求</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="客厅阳台_功能" value="洗衣晾衣"><span>洗衣晾衣</span></label>
+    <label><input type="checkbox" name="客厅阳台_功能" value="休闲区"><span>休闲区</span></label>
+    <label><input type="checkbox" name="客厅阳台_功能" value="泡茶"><span>泡茶</span></label>
+    <label><input type="checkbox" name="客厅阳台_功能" value="储物"><span>储物</span></label>
+    <label><input type="checkbox" name="客厅阳台_功能" value="健身"><span>健身</span></label>
+    <label><input type="checkbox" name="客厅阳台_功能" value="养花"><span>养花</span></label>
+    <label><input type="checkbox" name="客厅阳台_功能" value="地台"><span>地台</span></label>
+    <label><input type="checkbox" name="客厅阳台_功能" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="客厅阳台_功能_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他需求</span>
+  <textarea name="客厅阳台_其他需求" placeholder="请输入" rows="2"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 15. 厨房阳台 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>厨房阳台</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">是否封闭</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="厨房阳台_封闭" value="封闭阳台纳入室内空间"><span>封闭阳台纳入室内空间</span></label>
+    <label><input type="radio" name="厨房阳台_封闭" value="不封阳台半室外空间"><span>不封阳台 半室外空间</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">功能需求</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="厨房阳台_功能" value="用作厨房一部分"><span>用作厨房一部分</span></label>
+    <label><input type="checkbox" name="厨房阳台_功能" value="洗衣晾衣"><span>洗衣晾衣</span></label>
+    <label><input type="checkbox" name="厨房阳台_功能" value="休闲区"><span>休闲区</span></label>
+    <label><input type="checkbox" name="厨房阳台_功能" value="储物"><span>储物</span></label>
+    <label><input type="checkbox" name="厨房阳台_功能" value="养花"><span>养花</span></label>
+    <label><input type="checkbox" name="厨房阳台_功能" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="厨房阳台_功能_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他需求</span>
+  <textarea name="厨房阳台_其他需求" placeholder="请输入" rows="2"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 16. 主卧 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>主卧</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">家具/设备</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="主卧_家具" value="梳妆台"><span>梳妆台</span></label>
+    <label><input type="checkbox" name="主卧_家具" value="书桌"><span>书桌</span></label>
+    <label><input type="checkbox" name="主卧_家具" value="斗柜"><span>斗柜</span></label>
+    <label><input type="checkbox" name="主卧_家具" value="壁挂电视"><span>壁挂电视</span></label>
+    <label><input type="checkbox" name="主卧_家具" value="投影仪"><span>投影仪</span></label>
+    <label><input type="checkbox" name="主卧_家具" value="移动电视"><span>移动电视</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">床类型</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="主卧_床类型" value="悬浮床"><span>悬浮床</span></label>
+    <label><input type="checkbox" name="主卧_床类型" value="排骨架床"><span>排骨架床</span></label>
+    <label><input type="checkbox" name="主卧_床类型" value="皮革床"><span>皮革床</span></label>
+    <label><input type="checkbox" name="主卧_床类型" value="实木床"><span>实木床</span></label>
+    <label><input type="checkbox" name="主卧_床类型" value="布艺床"><span>布艺床</span></label>
+    <label><input type="checkbox" name="主卧_床类型" value="均可"><span>均可</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">床大小</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="主卧_床大小" value="1.5*2m"><span>1.5×2m</span></label>
+    <label><input type="radio" name="主卧_床大小" value="1.8*2m"><span>1.8×2m</span></label>
+    <label><input type="radio" name="主卧_床大小" value="2*2m"><span>2×2m</span></label>
+    <label><input type="radio" name="主卧_床大小" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="主卧_床大小_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">衣柜喜好</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="主卧_衣柜" value="定制柜"><span>定制柜</span></label>
+    <label><input type="radio" name="主卧_衣柜" value="成品柜"><span>成品柜</span></label>
+    <label><input type="radio" name="主卧_衣柜" value="金属衣柜"><span>金属衣柜</span></label>
+    <label><input type="radio" name="主卧_衣柜" value="无"><span>无</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">挂衣设计</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="主卧_挂衣" value="落地晾衣架"><span>落地晾衣架</span></label>
+    <label><input type="checkbox" name="主卧_挂衣" value="净衣区"><span>净衣区</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">设计</span>
+  <div class="sub-section">
+    <div class="two-col">
+      <div>
+        <span class="q-sub-label" style="margin-top:0">床头背景墙</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="主卧_背景墙" value="是"><span>是</span></label>
+          <label><input type="radio" name="主卧_背景墙" value="否"><span>否</span></label>
+        </div>
+      </div>
+      <div>
+        <span class="q-sub-label" style="margin-top:0">飘窗软垫/造型</span>
+        <input type="text" name="主卧_飘窗" placeholder="请描述">
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他需求</span>
+  <textarea name="主卧_其他需求" placeholder="请输入" rows="2"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 17. 次卧 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>次卧</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">家具/设备</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="次卧_家具" value="梳妆台"><span>梳妆台</span></label>
+    <label><input type="checkbox" name="次卧_家具" value="书桌"><span>书桌</span></label>
+    <label><input type="checkbox" name="次卧_家具" value="斗柜"><span>斗柜</span></label>
+    <label><input type="checkbox" name="次卧_家具" value="壁挂电视"><span>壁挂电视</span></label>
+    <label><input type="checkbox" name="次卧_家具" value="投影仪"><span>投影仪</span></label>
+    <label><input type="checkbox" name="次卧_家具" value="移动电视"><span>移动电视</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">床类型</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="次卧_床类型" value="悬浮床"><span>悬浮床</span></label>
+    <label><input type="checkbox" name="次卧_床类型" value="排骨架床"><span>排骨架床</span></label>
+    <label><input type="checkbox" name="次卧_床类型" value="皮革床"><span>皮革床</span></label>
+    <label><input type="checkbox" name="次卧_床类型" value="实木床"><span>实木床</span></label>
+    <label><input type="checkbox" name="次卧_床类型" value="布艺床"><span>布艺床</span></label>
+    <label><input type="checkbox" name="次卧_床类型" value="均可"><span>均可</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">床大小</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="次卧_床大小" value="1.2*2m"><span>1.2×2m</span></label>
+    <label><input type="radio" name="次卧_床大小" value="1.3*2m"><span>1.3×2m</span></label>
+    <label><input type="radio" name="次卧_床大小" value="1.5*2m"><span>1.5×2m</span></label>
+    <label><input type="radio" name="次卧_床大小" value="1.8*2m"><span>1.8×2m</span></label>
+    <label><input type="radio" name="次卧_床大小" value="2*2m"><span>2×2m</span></label>
+    <label><input type="radio" name="次卧_床大小" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="次卧_床大小_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">衣柜喜好</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="次卧_衣柜" value="定制柜"><span>定制柜</span></label>
+    <label><input type="radio" name="次卧_衣柜" value="成品柜"><span>成品柜</span></label>
+    <label><input type="radio" name="次卧_衣柜" value="金属衣柜"><span>金属衣柜</span></label>
+    <label><input type="radio" name="次卧_衣柜" value="无"><span>无</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">挂衣设计</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="次卧_挂衣" value="落地晾衣架"><span>落地晾衣架</span></label>
+    <label><input type="checkbox" name="次卧_挂衣" value="净衣区"><span>净衣区</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">设计</span>
+  <div class="sub-section">
+    <div class="two-col">
+      <div>
+        <span class="q-sub-label" style="margin-top:0">床头背景墙</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="次卧_背景墙" value="是"><span>是</span></label>
+          <label><input type="radio" name="次卧_背景墙" value="否"><span>否</span></label>
+        </div>
+      </div>
+      <div>
+        <span class="q-sub-label" style="margin-top:0">飘窗软垫/造型</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="次卧_飘窗" value="是"><span>是</span></label>
+          <label><input type="radio" name="次卧_飘窗" value="否"><span>否</span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他需求</span>
+  <textarea name="次卧_其他需求" placeholder="请输入" rows="2"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 18. 儿童房 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>儿童房</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">功能规划是否固定</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="儿童房_规划固定" value="是"><span>是</span></label>
+    <label><input type="radio" name="儿童房_规划固定" value="否"><span>否</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">考虑蒙氏儿童房</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="儿童房_蒙氏" value="是"><span>是</span></label>
+    <label><input type="radio" name="儿童房_蒙氏" value="否"><span>否</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">家具/设备</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="儿童房_家具" value="梳妆台"><span>梳妆台</span></label>
+    <label><input type="checkbox" name="儿童房_家具" value="书桌"><span>书桌</span></label>
+    <label><input type="checkbox" name="儿童房_家具" value="斗柜"><span>斗柜</span></label>
+    <label><input type="checkbox" name="儿童房_家具" value="壁挂电视"><span>壁挂电视</span></label>
+    <label><input type="checkbox" name="儿童房_家具" value="投影仪"><span>投影仪</span></label>
+    <label><input type="checkbox" name="儿童房_家具" value="移动电视"><span>移动电视</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">床类型</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="儿童房_床类型" value="悬浮床"><span>悬浮床</span></label>
+    <label><input type="checkbox" name="儿童房_床类型" value="排骨架床"><span>排骨架床</span></label>
+    <label><input type="checkbox" name="儿童房_床类型" value="榻榻米"><span>榻榻米</span></label>
+    <label><input type="checkbox" name="儿童房_床类型" value="皮革床"><span>皮革床</span></label>
+    <label><input type="checkbox" name="儿童房_床类型" value="实木床"><span>实木床</span></label>
+    <label><input type="checkbox" name="儿童房_床类型" value="布艺床"><span>布艺床</span></label>
+    <label><input type="checkbox" name="儿童房_床类型" value="高低床"><span>高低床</span></label>
+    <label><input type="checkbox" name="儿童房_床类型" value="上床下桌"><span>上床下桌</span></label>
+    <label><input type="checkbox" name="儿童房_床类型" value="均可"><span>均可</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">床大小</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="儿童房_床大小" value="1.2*2m"><span>1.2×2m</span></label>
+    <label><input type="radio" name="儿童房_床大小" value="1.3*2m"><span>1.3×2m</span></label>
+    <label><input type="radio" name="儿童房_床大小" value="1.5*2m"><span>1.5×2m</span></label>
+    <label><input type="radio" name="儿童房_床大小" value="1.8*2m"><span>1.8×2m</span></label>
+    <label><input type="radio" name="儿童房_床大小" value="2*2m"><span>2×2m</span></label>
+    <label><input type="radio" name="儿童房_床大小" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="儿童房_床大小_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">衣柜喜好</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="儿童房_衣柜" value="定制柜"><span>定制柜</span></label>
+    <label><input type="radio" name="儿童房_衣柜" value="成品柜"><span>成品柜</span></label>
+    <label><input type="radio" name="儿童房_衣柜" value="金属衣柜"><span>金属衣柜</span></label>
+    <label><input type="radio" name="儿童房_衣柜" value="无"><span>无</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">挂衣设计</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="儿童房_挂衣" value="落地晾衣架"><span>落地晾衣架</span></label>
+    <label><input type="checkbox" name="儿童房_挂衣" value="净衣区"><span>净衣区</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">设计</span>
+  <div class="sub-section">
+    <div class="two-col">
+      <div>
+        <span class="q-sub-label" style="margin-top:0">床头背景墙</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="儿童房_背景墙" value="是"><span>是</span></label>
+          <label><input type="radio" name="儿童房_背景墙" value="否"><span>否</span></label>
+        </div>
+      </div>
+      <div>
+        <span class="q-sub-label" style="margin-top:0">飘窗软垫/造型</span>
+        <div class="radio-grid">
+          <label><input type="radio" name="儿童房_飘窗" value="是"><span>是</span></label>
+          <label><input type="radio" name="儿童房_飘窗" value="否"><span>否</span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他需求</span>
+  <textarea name="儿童房_其他需求" placeholder="请输入" rows="2"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 19. 书房 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>书房</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">规划位置</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="书房_位置" value="开放式（客厅区域增加书房）"><span>开放式（客厅区域增加书房）</span></label>
+    <label><input type="radio" name="书房_位置" value="独立空间"><span>独立空间</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">用途</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="书房_用途" value="社交接待"><span>社交接待</span></label>
+    <label><input type="checkbox" name="书房_用途" value="工作"><span>工作</span></label>
+    <label><input type="checkbox" name="书房_用途" value="孩子学习"><span>孩子学习</span></label>
+    <label><input type="checkbox" name="书房_用途" value="游戏"><span>游戏</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">主要使用者</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="书房_使用者" value="女业主"><span>女业主</span></label>
+    <label><input type="checkbox" name="书房_使用者" value="男业主"><span>男业主</span></label>
+    <label><input type="checkbox" name="书房_使用者" value="孩子"><span>孩子</span></label>
+    <label><input type="checkbox" name="书房_使用者" value="长辈"><span>长辈</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">电脑款式 &amp; 数量</span>
+  <div class="two-col">
+    <div>
+      <span class="q-sub-label" style="margin-top:0">电脑款式</span>
+      <div class="radio-grid">
+        <label><input type="radio" name="书房_电脑款式" value="无"><span>无</span></label>
+        <label><input type="radio" name="书房_电脑款式" value="笔记本"><span>笔记本</span></label>
+        <label><input type="radio" name="书房_电脑款式" value="台式"><span>台式</span></label>
+      </div>
+    </div>
+    <div>
+      <span class="q-sub-label" style="margin-top:0">电脑数量</span>
+      <div class="radio-grid">
+        <label><input type="radio" name="书房_电脑数量" value="1台"><span>1台</span></label>
+        <label><input type="radio" name="书房_电脑数量" value="2台"><span>2台</span></label>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">功能兼容</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="书房_兼容" value="客房"><span>客房</span></label>
+    <label><input type="checkbox" name="书房_兼容" value="直播间"><span>直播间</span></label>
+    <label><input type="checkbox" name="书房_兼容" value="茶室"><span>茶室</span></label>
+    <label><input type="checkbox" name="书房_兼容" value="多功能房"><span>多功能房</span></label>
+    <label><input type="checkbox" name="书房_兼容" value="衣帽间"><span>衣帽间</span></label>
+    <label><input type="checkbox" name="书房_兼容" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="书房_兼容_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他需求</span>
+  <textarea name="书房_其他需求" placeholder="请输入" rows="2"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 20. 全屋定制 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>全屋定制</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">定制柜子</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="定制柜子" value="鞋柜"><span>鞋柜</span></label>
+    <label><input type="checkbox" name="定制柜子" value="餐边柜"><span>餐边柜</span></label>
+    <label><input type="checkbox" name="定制柜子" value="收纳柜"><span>收纳柜</span></label>
+    <label><input type="checkbox" name="定制柜子" value="电视柜"><span>电视柜</span></label>
+    <label><input type="checkbox" name="定制柜子" value="斗柜"><span>斗柜</span></label>
+    <label><input type="checkbox" name="定制柜子" value="矮柜"><span>矮柜</span></label>
+    <label><input type="checkbox" name="定制柜子" value="衣柜"><span>衣柜</span></label>
+    <label><input type="checkbox" name="定制柜子" value="床头柜"><span>床头柜</span></label>
+    <label><input type="checkbox" name="定制柜子" value="书柜"><span>书柜</span></label>
+    <label><input type="checkbox" name="定制柜子" value="书桌"><span>书桌</span></label>
+    <label><input type="checkbox" name="定制柜子" value="根据设计来选择"><span>根据设计来选择</span></label>
+    <label><input type="checkbox" name="定制柜子" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="定制柜子_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">成品柜</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="成品柜" value="鞋柜"><span>鞋柜</span></label>
+    <label><input type="checkbox" name="成品柜" value="餐边柜"><span>餐边柜</span></label>
+    <label><input type="checkbox" name="成品柜" value="收纳柜"><span>收纳柜</span></label>
+    <label><input type="checkbox" name="成品柜" value="电视柜"><span>电视柜</span></label>
+    <label><input type="checkbox" name="成品柜" value="斗柜"><span>斗柜</span></label>
+    <label><input type="checkbox" name="成品柜" value="矮柜"><span>矮柜</span></label>
+    <label><input type="checkbox" name="成品柜" value="衣柜"><span>衣柜</span></label>
+    <label><input type="checkbox" name="成品柜" value="床头柜"><span>床头柜</span></label>
+    <label><input type="checkbox" name="成品柜" value="书柜"><span>书柜</span></label>
+    <label><input type="checkbox" name="成品柜" value="书桌"><span>书桌</span></label>
+    <label><input type="checkbox" name="成品柜" value="根据设计来选择"><span>根据设计来选择</span></label>
+    <label><input type="checkbox" name="成品柜" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="成品柜_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">柜子设计（多选）</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="柜子设计" value="内置抽屉"><span>内置抽屉</span></label>
+    <label><input type="checkbox" name="柜子设计" value="外置抽屉"><span>外置抽屉</span></label>
+    <label><input type="checkbox" name="柜子设计" value="玻璃柜门"><span>玻璃柜门</span></label>
+    <label><input type="checkbox" name="柜子设计" value="拉手柜门"><span>拉手柜门</span></label>
+    <label><input type="checkbox" name="柜子设计" value="开放格"><span>开放格</span></label>
+    <label><input type="checkbox" name="柜子设计" value="骨骼门板"><span>骨骼门板</span></label>
+    <label><input type="checkbox" name="柜子设计" value="推拉门"><span>推拉门</span></label>
+    <label><input type="checkbox" name="柜子设计" value="根据设计来选择"><span>根据设计来选择</span></label>
+    <label><input type="checkbox" name="柜子设计" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="柜子设计_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">衣物收纳数量少的空间</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="衣物收纳_少" value="主卧"><span>主卧</span></label>
+    <label><input type="checkbox" name="衣物收纳_少" value="次卧"><span>次卧</span></label>
+    <label><input type="checkbox" name="衣物收纳_少" value="长辈房"><span>长辈房</span></label>
+    <label><input type="checkbox" name="衣物收纳_少" value="儿童房"><span>儿童房</span></label>
+    <label><input type="checkbox" name="衣物收纳_少" value="男孩房"><span>男孩房</span></label>
+    <label><input type="checkbox" name="衣物收纳_少" value="女孩房"><span>女孩房</span></label>
+    <label><input type="checkbox" name="衣物收纳_少" value="书房"><span>书房</span></label>
+    <label><input type="checkbox" name="衣物收纳_少" value="洗衣房"><span>洗衣房</span></label>
+    <label><input type="checkbox" name="衣物收纳_少" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="衣物收纳_少_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">衣物收纳数量中等的空间</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="衣物收纳_中" value="主卧"><span>主卧</span></label>
+    <label><input type="checkbox" name="衣物收纳_中" value="次卧"><span>次卧</span></label>
+    <label><input type="checkbox" name="衣物收纳_中" value="长辈房"><span>长辈房</span></label>
+    <label><input type="checkbox" name="衣物收纳_中" value="儿童房"><span>儿童房</span></label>
+    <label><input type="checkbox" name="衣物收纳_中" value="男孩房"><span>男孩房</span></label>
+    <label><input type="checkbox" name="衣物收纳_中" value="女孩房"><span>女孩房</span></label>
+    <label><input type="checkbox" name="衣物收纳_中" value="书房"><span>书房</span></label>
+    <label><input type="checkbox" name="衣物收纳_中" value="洗衣房"><span>洗衣房</span></label>
+    <label><input type="checkbox" name="衣物收纳_中" value="衣帽间"><span>衣帽间</span></label>
+    <label><input type="checkbox" name="衣物收纳_中" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="衣物收纳_中_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">衣物收纳数量很多的空间</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="衣物收纳_多" value="主卧"><span>主卧</span></label>
+    <label><input type="checkbox" name="衣物收纳_多" value="次卧"><span>次卧</span></label>
+    <label><input type="checkbox" name="衣物收纳_多" value="长辈房"><span>长辈房</span></label>
+    <label><input type="checkbox" name="衣物收纳_多" value="儿童房"><span>儿童房</span></label>
+    <label><input type="checkbox" name="衣物收纳_多" value="男孩房"><span>男孩房</span></label>
+    <label><input type="checkbox" name="衣物收纳_多" value="女孩房"><span>女孩房</span></label>
+    <label><input type="checkbox" name="衣物收纳_多" value="书房"><span>书房</span></label>
+    <label><input type="checkbox" name="衣物收纳_多" value="洗衣房"><span>洗衣房</span></label>
+    <label><input type="checkbox" name="衣物收纳_多" value="衣帽间"><span>衣帽间</span></label>
+    <label><input type="checkbox" name="衣物收纳_多" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="衣物收纳_多_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">常规需求</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="常规需求" value="熨烫区"><span>熨烫区</span></label>
+    <label><input type="checkbox" name="常规需求" value="保险柜"><span>保险柜</span></label>
+    <label><input type="checkbox" name="常规需求" value="包包展示区"><span>包包展示区</span></label>
+    <label><input type="checkbox" name="常规需求" value="首饰柜"><span>首饰柜</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他物品收纳数量少的空间</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="其他收纳_少" value="客厅"><span>客厅</span></label>
+    <label><input type="checkbox" name="其他收纳_少" value="餐厅"><span>餐厅</span></label>
+    <label><input type="checkbox" name="其他收纳_少" value="阳台"><span>阳台</span></label>
+    <label><input type="checkbox" name="其他收纳_少" value="主卧"><span>主卧</span></label>
+    <label><input type="checkbox" name="其他收纳_少" value="次卧"><span>次卧</span></label>
+    <label><input type="checkbox" name="其他收纳_少" value="长辈房"><span>长辈房</span></label>
+    <label><input type="checkbox" name="其他收纳_少" value="儿童房"><span>儿童房</span></label>
+    <label><input type="checkbox" name="其他收纳_少" value="男孩房"><span>男孩房</span></label>
+    <label><input type="checkbox" name="其他收纳_少" value="女孩房"><span>女孩房</span></label>
+    <label><input type="checkbox" name="其他收纳_少" value="书房"><span>书房</span></label>
+    <label><input type="checkbox" name="其他收纳_少" value="洗衣房"><span>洗衣房</span></label>
+    <label><input type="checkbox" name="其他收纳_少" value="衣帽间"><span>衣帽间</span></label>
+    <label><input type="checkbox" name="其他收纳_少" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="其他收纳_少_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他物品收纳数量中等的空间</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="其他收纳_中" value="客厅"><span>客厅</span></label>
+    <label><input type="checkbox" name="其他收纳_中" value="餐厅"><span>餐厅</span></label>
+    <label><input type="checkbox" name="其他收纳_中" value="阳台"><span>阳台</span></label>
+    <label><input type="checkbox" name="其他收纳_中" value="主卧"><span>主卧</span></label>
+    <label><input type="checkbox" name="其他收纳_中" value="次卧"><span>次卧</span></label>
+    <label><input type="checkbox" name="其他收纳_中" value="长辈房"><span>长辈房</span></label>
+    <label><input type="checkbox" name="其他收纳_中" value="儿童房"><span>儿童房</span></label>
+    <label><input type="checkbox" name="其他收纳_中" value="男孩房"><span>男孩房</span></label>
+    <label><input type="checkbox" name="其他收纳_中" value="女孩房"><span>女孩房</span></label>
+    <label><input type="checkbox" name="其他收纳_中" value="书房"><span>书房</span></label>
+    <label><input type="checkbox" name="其他收纳_中" value="洗衣房"><span>洗衣房</span></label>
+    <label><input type="checkbox" name="其他收纳_中" value="衣帽间"><span>衣帽间</span></label>
+    <label><input type="checkbox" name="其他收纳_中" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="其他收纳_中_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他物品收纳数量很多的空间</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="其他收纳_多" value="客厅"><span>客厅</span></label>
+    <label><input type="checkbox" name="其他收纳_多" value="餐厅"><span>餐厅</span></label>
+    <label><input type="checkbox" name="其他收纳_多" value="阳台"><span>阳台</span></label>
+    <label><input type="checkbox" name="其他收纳_多" value="主卧"><span>主卧</span></label>
+    <label><input type="checkbox" name="其他收纳_多" value="次卧"><span>次卧</span></label>
+    <label><input type="checkbox" name="其他收纳_多" value="长辈房"><span>长辈房</span></label>
+    <label><input type="checkbox" name="其他收纳_多" value="儿童房"><span>儿童房</span></label>
+    <label><input type="checkbox" name="其他收纳_多" value="男孩房"><span>男孩房</span></label>
+    <label><input type="checkbox" name="其他收纳_多" value="女孩房"><span>女孩房</span></label>
+    <label><input type="checkbox" name="其他收纳_多" value="书房"><span>书房</span></label>
+    <label><input type="checkbox" name="其他收纳_多" value="洗衣房"><span>洗衣房</span></label>
+    <label><input type="checkbox" name="其他收纳_多" value="衣帽间"><span>衣帽间</span></label>
+    <label><input type="checkbox" name="其他收纳_多" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="其他收纳_多_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 21. 其他需求 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>其他需求</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">风水</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="风水" value="无"><span>无</span></label>
+    <label><input type="checkbox" name="风水" value="风水"><span>风水</span></label>
+    <label><input type="checkbox" name="风水" value="信仰"><span>信仰</span></label>
+    <label><input type="checkbox" name="风水" value="门的位置"><span>门的位置</span></label>
+    <label><input type="checkbox" name="风水" value="床的朝向"><span>床的朝向</span></label>
+    <label><input type="checkbox" name="风水" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="风水_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">旧物沿用<br><small style="font-weight:normal;color:var(--light-text)">需要融入新家的，充满回忆的旧家具、收藏品或特定元素</small></span>
+  <div class="radio-grid">
+    <label><input type="radio" name="旧物沿用" value="无"><span>无</span></label>
+  </div>
+  <textarea name="旧物沿用_备注" placeholder="如有需要融入新家的旧物请描述" rows="2" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">描述生活习惯及作息时间</span>
+  <textarea name="生活习惯" placeholder="请详细描述" rows="3"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">最重要的家居活动</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="家居活动" value="共同做法"><span>共同做法</span></label>
+    <label><input type="checkbox" name="家居活动" value="共同观影"><span>共同观影</span></label>
+    <label><input type="checkbox" name="家居活动" value="辅导作业"><span>辅导作业</span></label>
+    <label><input type="checkbox" name="家居活动" value="各自安静阅读"><span>各自安静阅读</span></label>
+    <label><input type="checkbox" name="家居活动" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="家居活动_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">运动设备</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="运动设备" value="无"><span>无</span></label>
+    <label><input type="checkbox" name="运动设备" value="跑步机"><span>跑步机</span></label>
+    <label><input type="checkbox" name="运动设备" value="椭圆机"><span>椭圆机</span></label>
+    <label><input type="checkbox" name="运动设备" value="训练凳"><span>训练凳</span></label>
+    <label><input type="checkbox" name="运动设备" value="动感单车"><span>动感单车</span></label>
+    <label><input type="checkbox" name="运动设备" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="运动设备_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他设备</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="其他设备" value="无"><span>无</span></label>
+    <label><input type="checkbox" name="其他设备" value="钢琴"><span>钢琴</span></label>
+    <label><input type="checkbox" name="其他设备" value="古筝"><span>古筝</span></label>
+    <label><input type="checkbox" name="其他设备" value="画架"><span>画架</span></label>
+    <label><input type="checkbox" name="其他设备" value="架子鼓"><span>架子鼓</span></label>
+    <label><input type="checkbox" name="其他设备" value="吉他"><span>吉他</span></label>
+    <label><input type="checkbox" name="其他设备" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="其他设备_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">理想家关键词</span>
+  <textarea name="理想家关键词" placeholder="用几个关键词描述你理想中的家" rows="2"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">描述理想中的周末场景</span>
+  <textarea name="理想周末" placeholder="请描述" rows="3"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">色彩偏好</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="色彩偏好" value="红"><span>红</span></label>
+    <label><input type="checkbox" name="色彩偏好" value="橙"><span>橙</span></label>
+    <label><input type="checkbox" name="色彩偏好" value="黄"><span>黄</span></label>
+    <label><input type="checkbox" name="色彩偏好" value="绿"><span>绿</span></label>
+    <label><input type="checkbox" name="色彩偏好" value="青"><span>青</span></label>
+    <label><input type="checkbox" name="色彩偏好" value="蓝"><span>蓝</span></label>
+    <label><input type="checkbox" name="色彩偏好" value="紫"><span>紫</span></label>
+    <label><input type="checkbox" name="色彩偏好" value="黑"><span>黑</span></label>
+    <label><input type="checkbox" name="色彩偏好" value="白"><span>白</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">色彩禁忌</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="色彩禁忌" value="红"><span>红</span></label>
+    <label><input type="checkbox" name="色彩禁忌" value="橙"><span>橙</span></label>
+    <label><input type="checkbox" name="色彩禁忌" value="黄"><span>黄</span></label>
+    <label><input type="checkbox" name="色彩禁忌" value="绿"><span>绿</span></label>
+    <label><input type="checkbox" name="色彩禁忌" value="青"><span>青</span></label>
+    <label><input type="checkbox" name="色彩禁忌" value="蓝"><span>蓝</span></label>
+    <label><input type="checkbox" name="色彩禁忌" value="紫"><span>紫</span></label>
+    <label><input type="checkbox" name="色彩禁忌" value="黑"><span>黑</span></label>
+    <label><input type="checkbox" name="色彩禁忌" value="白"><span>白</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">材质偏好</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="材质偏好" value="墙布"><span>墙布</span></label>
+    <label><input type="checkbox" name="材质偏好" value="乳胶漆"><span>乳胶漆</span></label>
+    <label><input type="checkbox" name="材质偏好" value="墙纸"><span>墙纸</span></label>
+    <label><input type="checkbox" name="材质偏好" value="PU"><span>PU</span></label>
+    <label><input type="checkbox" name="材质偏好" value="石膏"><span>石膏</span></label>
+    <label><input type="checkbox" name="材质偏好" value="护墙板"><span>护墙板</span></label>
+    <label><input type="checkbox" name="材质偏好" value="岩板"><span>岩板</span></label>
+    <label><input type="checkbox" name="材质偏好" value="玻璃"><span>玻璃</span></label>
+    <label><input type="checkbox" name="材质偏好" value="金属"><span>金属</span></label>
+    <label><input type="checkbox" name="材质偏好" value="亚克力"><span>亚克力</span></label>
+    <label><input type="checkbox" name="材质偏好" value="藤编"><span>藤编</span></label>
+    <label><input type="checkbox" name="材质偏好" value="亚麻"><span>亚麻</span></label>
+    <label><input type="checkbox" name="材质偏好" value="水磨石"><span>水磨石</span></label>
+    <label><input type="checkbox" name="材质偏好" value="皮革"><span>皮革</span></label>
+    <label><input type="checkbox" name="材质偏好" value="软包"><span>软包</span></label>
+    <label><input type="checkbox" name="材质偏好" value="硬包"><span>硬包</span></label>
+    <label><input type="checkbox" name="材质偏好" value="不锈钢"><span>不锈钢</span></label>
+    <label><input type="checkbox" name="材质偏好" value="陶瓷"><span>陶瓷</span></label>
+    <label><input type="checkbox" name="材质偏好" value="微水泥"><span>微水泥</span></label>
+    <label><input type="checkbox" name="材质偏好" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="材质偏好_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">材质禁忌</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="材质禁忌" value="墙布"><span>墙布</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="乳胶漆"><span>乳胶漆</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="墙纸"><span>墙纸</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="PU"><span>PU</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="石膏"><span>石膏</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="护墙板"><span>护墙板</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="岩板"><span>岩板</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="玻璃"><span>玻璃</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="金属"><span>金属</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="亚克力"><span>亚克力</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="藤编"><span>藤编</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="亚麻"><span>亚麻</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="水磨石"><span>水磨石</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="皮革"><span>皮革</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="软包"><span>软包</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="硬包"><span>硬包</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="不锈钢"><span>不锈钢</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="陶瓷"><span>陶瓷</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="微水泥"><span>微水泥</span></label>
+    <label><input type="checkbox" name="材质禁忌" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="材质禁忌_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">门窗</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="门窗" value="使用开发商大门"><span>使用开发商大门</span></label>
+    <label><input type="checkbox" name="门窗" value="使用开发商所有窗子"><span>使用开发商所有窗子</span></label>
+    <label><input type="checkbox" name="门窗" value="使用开发商部分窗子"><span>使用开发商部分窗子</span></label>
+    <label><input type="checkbox" name="门窗" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="门窗_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">摄像头区域</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="摄像头区域" value="大门外"><span>大门外</span></label>
+    <label><input type="checkbox" name="摄像头区域" value="玄关"><span>玄关</span></label>
+    <label><input type="checkbox" name="摄像头区域" value="客餐厅"><span>客餐厅</span></label>
+    <label><input type="checkbox" name="摄像头区域" value="房间"><span>房间</span></label>
+  </div>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">其他电器</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="其他电器" value="挂烫机"><span>挂烫机</span></label>
+    <label><input type="checkbox" name="其他电器" value="按摩椅"><span>按摩椅</span></label>
+    <label><input type="checkbox" name="其他电器" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="其他电器_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">清洁工具</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="清洁工具" value="扫地机器人"><span>扫地机器人</span></label>
+    <label><input type="checkbox" name="清洁工具" value="洗地机"><span>洗地机</span></label>
+    <label><input type="checkbox" name="清洁工具" value="拖地机"><span>拖地机</span></label>
+    <label><input type="checkbox" name="清洁工具" value="吸尘器"><span>吸尘器</span></label>
+    <label><input type="checkbox" name="清洁工具" value="传统扫帚拖把"><span>传统扫帚拖把</span></label>
+    <label><input type="checkbox" name="清洁工具" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="清洁工具_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+<div class="section">
+<div class="question">
+  <span class="q-label">目前或过往居住环境有何遗憾</span>
+  <div class="checkbox-grid">
+    <label><input type="checkbox" name="居住遗憾" value="采光不足"><span>采光不足</span></label>
+    <label><input type="checkbox" name="居住遗憾" value="储物空间不足"><span>储物空间不足</span></label>
+    <label><input type="checkbox" name="居住遗憾" value="过道空间浪费"><span>过道空间浪费</span></label>
+    <label><input type="checkbox" name="居住遗憾" value="其他"><span>其他</span></label>
+  </div>
+  <textarea name="居住遗憾_备注" placeholder="备注" class="remark-input"></textarea>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 冲突取消确认 ==================== -->
+<div class="module">
+<div class="module-header" onclick="toggleModule(this)">
+  <h2>冲突取舍确认</h2>
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="module-body">
+<div class="section">
+<div class="question">
+  <span class="q-label">上述选择√的，如在户型及效果设计中发生冲突，能否接受取消？</span>
+  <div class="radio-grid">
+    <label><input type="radio" name="冲突取消" value="是"><span>是</span></label>
+    <label><input type="radio" name="冲突取消" value="否"><span>否</span></label>
+    <label><input type="radio" name="冲突取消" value="交流沟通再决定"><span>交流沟通再决定</span></label>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- end container -->
+
+<div class="submit-wrap">
+  <button class="submit-btn" onclick="submitForm()">提 交 问 卷</button>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
-  // 复选框/单选框视觉反馈
-  document.querySelectorAll('.check-item input').forEach(input => {
-    input.addEventListener('change', function() {
-      if (this.type === 'radio') {
-        document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => {
-          r.closest('.check-item').classList.remove('checked');
-        });
-      }
-      if (this.checked) this.closest('.check-item').classList.add('checked');
-      else this.closest('.check-item').classList.remove('checked');
-      updateProgress();
-    });
-  });
-
-  // 输入框变化时更新进度
-  document.querySelectorAll('input[type="text"], input[type="tel"], input[type="number"], input[type="date"], textarea').forEach(el => {
-    el.addEventListener('input', updateProgress);
-  });
-
-  // 折叠区块
-  function toggleSection(head) {
-    head.parentElement.classList.toggle('collapsed');
+// Toggle modules
+function toggleModule(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.arrow');
+  if (body.classList.contains('hidden')) {
+    body.classList.remove('hidden');
+    arrow.classList.remove('collapsed');
+  } else {
+    body.classList.add('hidden');
+    arrow.classList.add('collapsed');
   }
-
-  // 自动计算家庭人数
-  ['adult_count', 'elderly_count', 'child_count'].forEach(name => {
-    document.querySelector(`input[name="${name}"]`).addEventListener('input', () => {
-      const a = +document.querySelector('input[name="adult_count"]').value || 0;
-      const e = +document.querySelector('input[name="elderly_count"]').value || 0;
-      const c = +document.querySelector('input[name="child_count"]').value || 0;
-      document.querySelector('input[name="total_count"]').value = a + e + c;
-    });
-  });
-
-  // 进度条
-  function updateProgress() {
-    const allInputs = document.querySelectorAll('#surveyForm input[type="text"], #surveyForm input[type="tel"], #surveyForm input[type="number"], #surveyForm input[type="date"], #surveyForm textarea, #surveyForm select');
-    const allChecks = document.querySelectorAll('#surveyForm input[type="checkbox"], #surveyForm input[type="radio"]');
-    
-    let filled = 0, total = 0;
-    allInputs.forEach(el => {
-      if (el.readOnly) return;
-      total++;
-      if (el.value && el.value.trim()) filled++;
-    });
-    allChecks.forEach(el => {
-      total++;
-      if (el.checked) filled++;
-    });
-
-    const percent = total > 0 ? Math.round(filled / total * 100) : 0;
-    document.getElementById('progressFill').style.width = percent + '%';
-    document.getElementById('progressText').textContent = percent + '% 已填写';
-  }
-
-  // 提交
-  function handleSubmit() {
-    const form = document.getElementById('surveyForm');
-    
-    // 必填校验
-    const name = form.querySelector('input[name="name"]').value.trim();
-    const phone = form.querySelector('input[name="phone"]').value.trim();
-    const area = form.querySelector('input[name="area"]').value.trim();
-    const address = form.querySelector('input[name="address"]').value.trim();
-    
-    if (!name || !phone || !area || !address) {
-      alert('请至少填写姓名、电话、建筑面积和地址');
-      return;
-    }
-
-    // 收集数据
-    const data = {};
-    const formData = new FormData(form);
-    formData.forEach((v, k) => {
-      if (data[k]) {
-        if (Array.isArray(data[k])) data[k].push(v);
-        else data[k] = [data[k], v];
-      } else {
-        data[k] = v;
-      }
-    });
-
-    // 格式化邮件内容
-    let emailBody = `【客户姓名】${data.name || ''}\n`;
-    emailBody += `【联系电话】${data.phone || ''}\n`;
-    emailBody += `【建筑面积】${data.area || ''}㎡\n`;
-    emailBody += `【建筑地址】${data.address || ''}\n`;
-    emailBody += `【家庭人口】${data.population || ''}人\n`;
-    emailBody += `【留宿需求】${data.guest || '无'}\n`;
-    
-    if (data.special_needs) emailBody += `\n【特别需求】\n${data.special_needs}\n`;
-    if (data.space_planning) emailBody += `\n【空间规划】\n${Array.isArray(data.space_planning) ? data.space_planning.join('、') : data.space_planning}\n`;
-    if (data.design_style) emailBody += `\n【设计风格】\n${Array.isArray(data.design_style) ? data.design_style.join('、') : data.design_style}\n`;
-    if (data.color_preference) emailBody += `\n【色彩感觉】\n${Array.isArray(data.color_preference) ? data.color_preference.join('、') : data.color_preference}\n`;
-    if (data.mood_preference) emailBody += `\n【整体氛围】\n${Array.isArray(data.mood_preference) ? data.mood_preference.join('、') : data.mood_preference}\n`;
-    
-    emailBody += `\n【预算规划】\n`;
-    if (data.budget_hard) emailBody += `  硬装：${data.budget_hard}万\n`;
-    if (data.budget_main) emailBody += `  主材：${data.budget_main}万\n`;
-    if (data.budget_soft) emailBody += `  软装：${data.budget_soft}万\n`;
-    if (data.budget_appliance) emailBody += `  电器：${data.budget_appliance}万\n`;
-    
-    if (data.tradeoff) emailBody += `\n【取舍倾向】\n${Array.isArray(data.tradeoff) ? data.tradeoff.join('；') : data.tradeoff}\n`;
-    
-    if (data.equipment) emailBody += `\n【全屋设备】\n${Array.isArray(data.equipment) ? data.equipment.join('、') : data.equipment}\n`;
-    if (data.floor_size) emailBody += `\n【地板尺寸】${data.floor_size}\n`;
-    if (data.tile_size) emailBody += `\n【瓷砖尺寸】${data.tile_size}\n`;
-    if (data.lighting) emailBody += `\n【灯光方案】\n${Array.isArray(data.lighting) ? data.lighting.join('、') : data.lighting}\n`;
-    if (data.ceiling) emailBody += `\n【吊顶方案】\n${Array.isArray(data.ceiling) ? data.ceiling.join('、') : data.ceiling}\n`;
-    
-    if (data.curtain) emailBody += `\n【窗帘需求】\n${Array.isArray(data.curtain) ? data.curtain.join('、') : data.curtain}\n`;
-    if (data.fengshui) emailBody += `\n【风水需求】\n${data.fengshui}\n`;
-    if (data.keep_items) emailBody += `\n【旧物沿用】\n${data.keep_items}\n`;
-    if (data.habits) emailBody += `\n【生活习惯】\n${data.habits}\n`;
-    if (data.activities) emailBody += `\n【家居活动】\n${Array.isArray(data.activities) ? data.activities.join('、') : data.activities}\n`;
-    if (data.sports) emailBody += `\n【运动设备】\n${data.sports}\n`;
-    if (data.other_equipment) emailBody += `\n【其他设备】\n${data.other_equipment}\n`;
-    if (data.ideal_home) emailBody += `\n【理想家关键词】\n${data.ideal_home}\n`;
-    if (data.weekend_scene) emailBody += `\n【周末场景】\n${data.weekend_scene}\n`;
-
-    // 本地保存
-    try {
-      const existing = JSON.parse(localStorage.getItem('design_survey') || '[]');
-      existing.push({ time: new Date().toISOString(), data });
-      localStorage.setItem('design_survey', JSON.stringify(existing));
-    } catch(e) {}
-
-    // 打开邮件客户端发送
-    const subject = encodeURIComponent(`【设计需求调查】${data.name} - ${data.area}㎡`);
-    const body = encodeURIComponent(emailBody);
-    const mailtoLink = `mailto:357467320@qq.com?subject=${subject}&body=${body}`;
-    
-    window.location.href = mailtoLink;
-
-    document.getElementById('successModal').classList.add('show');
-  }
-
-  function closeModal() {
-    document.getElementById('successModal').classList.remove('show');
-  }
-
-  // 初始化进度
   updateProgress();
+}
+
+// Progress
+function updateProgress() {
+  const form = document.querySelector('.container');
+  const inputs = form.querySelectorAll('input[type="text"], input[type="tel"], input[type="number"], input[type="date"], textarea');
+  const checks = form.querySelectorAll('input[type="checkbox"], input[type="radio"]');
+  
+  let filled = 0, total = 0;
+  
+  inputs.forEach(el => {
+    total++;
+    if (el.value.trim()) filled++;
+  });
+  
+  // Group radio by name
+  const radioGroups = {};
+  checks.forEach(el => {
+    if (el.type === 'radio') {
+      if (!radioGroups[el.name]) radioGroups[el.name] = false;
+      if (el.checked) radioGroups[el.name] = true;
+    }
+  });
+  Object.values(radioGroups).forEach(v => { total++; if (v) filled++; });
+  
+  // Count checkbox groups
+  const cbGroups = {};
+  checks.forEach(el => {
+    if (el.type === 'checkbox') {
+      if (!cbGroups[el.name]) cbGroups[el.name] = false;
+      if (el.checked) cbGroups[el.name] = true;
+    }
+  });
+  Object.values(cbGroups).forEach(v => { total++; if (v) filled++; });
+  
+  const pct = total > 0 ? Math.round(filled / total * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = '填写进度：' + pct + '%';
+}
+
+// Listen for changes
+document.addEventListener('change', updateProgress);
+document.addEventListener('input', updateProgress);
+
+// Show toast
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(() => { t.style.display = 'none'; }, 2500);
+}
+
+// Submit
+function submitForm() {
+  const data = {};
+  const form = document.querySelector('.container');
+  
+  // Text inputs
+  form.querySelectorAll('input[type="text"], input[type="tel"], input[type="number"], input[type="date"], textarea').forEach(el => {
+    if (el.value.trim()) data[el.name] = el.value.trim();
+  });
+  
+  // Radios
+  const radioGroups = {};
+  form.querySelectorAll('input[type="radio"]').forEach(el => {
+    if (!radioGroups[el.name]) radioGroups[el.name] = [];
+    if (el.checked) radioGroups[el.name].push(el.value);
+  });
+  for (const [k, v] of Object.entries(radioGroups)) {
+    if (v.length) data[k] = v.join('、');
+  }
+  
+  // Checkboxes
+  const cbGroups = {};
+  form.querySelectorAll('input[type="checkbox"]').forEach(el => {
+    if (!cbGroups[el.name]) cbGroups[el.name] = [];
+    if (el.checked) cbGroups[el.name].push(el.value);
+  });
+  for (const [k, v] of Object.entries(cbGroups)) {
+    if (v.length) data[k] = v.join('、');
+  }
+  
+  // VS selects
+  form.querySelectorAll('select').forEach(el => {
+    if (el.value) data[el.name] = el.value;
+  });
+  
+  // Save to localStorage
+  localStorage.setItem('室内设计需求调查表', JSON.stringify(data));
+  
+  // Build mailto text
+  let body = '【室内设计需求调查表】\n\n';
+  const sections = {
+    '一、基本情况': ['客户姓名','客户电话','建筑面积','建筑地址','常住人口_大人','常住人口_老人','常住人口_儿童','常住人口_共计','职业_女业主','职业_女业主_备注','职业_男业主','职业_男业主_备注','房屋类型','房屋交付性质','居住性质','计划开工时间','计划入住时间','住宅使用方式','其他人员身份','女业主年龄','男业主年龄','其他人员年龄','特别成员','特别成员_备注','工作性质','做饭频率','留宿频率','留宿人员','留宿人员_备注'],
+    '二、特别需求': ['总体需求','特别需求_女业主','特别需求_女业主_备注','特别需求_男业主','特别需求_男业主_备注','特别需求_女性长辈','特别需求_女性长辈_备注','特别需求_男性长辈','特别需求_男性长辈_备注','特别需求_女性儿童','特别需求_女性儿童_备注','特别需求_男性儿童','特别需求_男性儿童_备注','特别需求_其他成员_备注'],
+    '三、空间规划': ['空间规划','空间规划_备注'],
+    '四、设计风格': ['设计风格','设计风格_备注','色彩感觉','色彩感觉_备注','整体氛围','整体氛围_备注'],
+    '五、预算与取舍': ['硬装预算','主材定制预算','软装预算','电器预算','vs_风水功能','vs_风水功能2','vs_美观功能','vs_美观功能2','vs_采光隐私','vs_采光隐私2','vs_收纳开阔','vs_收纳开阔2','vs_女男','vs_女男2','vs_预算设计','vs_预算设计2'],
+    '六、全屋设备': ['空调系统','供暖系统','新风系统','水处理系统','水处理系统_备注','热水系统','智能家居'],
+    '七、设计需求': ['地板','瓷砖_公共区域','瓷砖_房间','瓷砖_卫生间','灯光','灯具','灯具_备注','卫生间吊顶','厨房吊顶','石膏线','石膏线_备注','窗帘','窗帘_备注'],
+    '八、玄关': ['玄关柜','鞋子数量','玄关收纳','玄关收纳_备注','玄关_其他需求'],
+    '九、客厅': ['客厅功能','影音需求','影音需求_备注','背景墙','沙发偏好','客厅软装','客厅_其他需求'],
+    '十、餐厅&厨房': ['餐桌款式','冰箱位置','冰箱外观','冰箱数量','餐厅收纳','岛台需求','岛台设计','岛台设计_备注','橱柜','厨房使用人身高','厨房格局','厨房人数','厨房电器','厨房电器_备注','五金拉篮','五金拉篮_备注','餐厅厨房_其他需求'],
+    '十一、主卫': ['主卫_设备','主卫_淋浴隔断','主卫_淋浴隔断_备注','主卫_花洒水龙头','主卫_储物','主卫_化妆','主卫_浴室柜','主卫_干湿分离','主卫_浴室镜','主卫_淋浴下沉','主卫_妇洗器','主卫_其他需求'],
+    '十二、公卫': ['公卫_设备','公卫_淋浴隔断','公卫_淋浴隔断_备注','公卫_花洒水龙头','公卫_储物','公卫_化妆','公卫_浴室柜','公卫_干湿分离','公卫_浴室镜','公卫_淋浴下沉','公卫_妇洗器','公卫_其他需求'],
+    '十三、洗衣&晾晒': ['洗衣机区域','洗衣机区域_备注','晒衣区域','晒衣区域_备注','晒衣封窗','洗衣设备','洗衣设备_备注','壁挂洗衣机区域','壁挂洗衣机区域_备注','晾衣架','晾衣架_备注','洗衣池','拖把池','熨烫区域','洗衣晾晒_其他需求'],
+    '十四、客厅阳台': ['客厅阳台_封闭','客厅阳台_功能','客厅阳台_功能_备注','客厅阳台_其他需求'],
+    '十五、厨房阳台': ['厨房阳台_封闭','厨房阳台_功能','厨房阳台_功能_备注','厨房阳台_其他需求'],
+    '十六、主卧': ['主卧_家具','主卧_床类型','主卧_床大小','主卧_床大小_备注','主卧_衣柜','主卧_挂衣','主卧_背景墙','主卧_飘窗','主卧_其他需求'],
+    '十七、次卧': ['次卧_家具','次卧_床类型','次卧_床大小','次卧_床大小_备注','次卧_衣柜','次卧_挂衣','次卧_背景墙','次卧_飘窗','次卧_其他需求'],
+    '十八、儿童房': ['儿童房_规划固定','儿童房_蒙氏','儿童房_家具','儿童房_床类型','儿童房_床大小','儿童房_床大小_备注','儿童房_衣柜','儿童房_挂衣','儿童房_背景墙','儿童房_飘窗','儿童房_其他需求'],
+    '十九、书房': ['书房_位置','书房_用途','书房_使用者','书房_电脑款式','书房_电脑数量','书房_兼容','书房_兼容_备注','书房_其他需求'],
+    '二十、全屋定制': ['定制柜子','定制柜子_备注','成品柜','成品柜_备注','柜子设计','柜子设计_备注','衣物收纳_少','衣物收纳_少_备注','衣物收纳_中','衣物收纳_中_备注','衣物收纳_多','衣物收纳_多_备注','常规需求','其他收纳_少','其他收纳_少_备注','其他收纳_中','其他收纳_中_备注','其他收纳_多','其他收纳_多_备注'],
+    '二十一、其他需求': ['风水','风水_备注','旧物沿用','旧物沿用_备注','生活习惯','家居活动','家居活动_备注','运动设备','运动设备_备注','其他设备','其他设备_备注','理想家关键词','理想周末','色彩偏好','色彩禁忌','材质偏好','材质偏好_备注','材质禁忌','材质禁忌_备注','门窗','门窗_备注','摄像头区域','其他电器','其他电器_备注','清洁工具','清洁工具_备注','居住遗憾','居住遗憾_备注'],
+    '二十二、冲突取舍确认': ['冲突取消']
+  };
+  
+  for (const [section, keys] of Object.entries(sections)) {
+    let sectionText = '';
+    for (const key of keys) {
+      if (data[key]) {
+        sectionText += '  ' + key + '：' + data[key] + '\n';
+      }
+    }
+    if (sectionText) {
+      body += section + '\n' + sectionText + '\n';
+    }
+  }
+  
+  // Also include any keys not in sections
+  for (const [k, v] of Object.entries(data)) {
+    let found = false;
+    for (const keys of Object.values(sections)) {
+      if (keys.includes(k)) { found = true; break; }
+    }
+    if (!found) body += k + '：' + v + '\n';
+  }
+  
+  const subject = encodeURIComponent('室内设计需求调查表 - ' + (data['客户姓名'] || '未填写'));
+  const mailBody = encodeURIComponent(body);
+  window.location.href = 'mailto:357467320@qq.com?subject=' + subject + '&body=' + mailBody;
+  
+  showToast('问卷已保存，正在打开邮件发送...');
+}
+
+// Restore from localStorage on load
+window.addEventListener('DOMContentLoaded', function() {
+  const saved = localStorage.getItem('室内设计需求调查表');
+  if (saved) {
+    try {
+      const data = JSON.parse(saved);
+      const form = document.querySelector('.container');
+      
+      for (const [key, val] of Object.entries(data)) {
+        const els = form.querySelectorAll('[name="' + key + '"]');
+        if (!els.length) continue;
+        
+        const firstEl = els[0];
+        if (firstEl.tagName === 'INPUT' && (firstEl.type === 'text' || firstEl.type === 'tel' || firstEl.type === 'number' || firstEl.type === 'date')) {
+          firstEl.value = val;
+        } else if (firstEl.tagName === 'TEXTAREA') {
+          firstEl.value = val;
+        } else if (firstEl.type === 'radio') {
+          const vals = val.split('、');
+          els.forEach(el => { if (vals.includes(el.value)) el.checked = true; });
+        } else if (firstEl.type === 'checkbox') {
+          const vals = val.split('、');
+          els.forEach(el => { if (vals.includes(el.value)) el.checked = true; });
+        } else if (firstEl.tagName === 'SELECT') {
+          firstEl.value = val;
+        }
+      }
+      updateProgress();
+    } catch(e) {}
+  }
+});
 </script>
 
 </body>
