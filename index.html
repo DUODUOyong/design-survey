@@ -297,6 +297,39 @@ textarea { resize: vertical; min-height: 60px; }
   padding: 20px 16px 40px;
   text-align: center;
 }
+.submit-method {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.submit-method label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--white);
+  border: 1px solid var(--linen);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--mid);
+}
+.submit-method label:hover {
+  border-color: var(--tan);
+  background: rgba(210,180,140,0.1);
+}
+.submit-method input[type="radio"] {
+  accent-color: var(--sienna);
+}
+.submit-method label:has(input:checked) {
+  border-color: var(--sienna);
+  background: rgba(160,82,45,0.06);
+  color: var(--sienna);
+  font-weight: 500;
+}
 .submit-btn {
   display: inline-block;
   padding: 14px 60px;
@@ -346,6 +379,7 @@ textarea { resize: vertical; min-height: 60px; }
   .container { padding: 8px 10px 100px; }
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.min.js"></script>
 </head>
 <body>
 
@@ -2811,6 +2845,10 @@ textarea { resize: vertical; min-height: 60px; }
 </div><!-- end container -->
 
 <div class="submit-wrap">
+  <div class="submit-method">
+    <label><input type="radio" name="submit_method" value="email" checked> 📧 通过邮件发送</label>
+    <label><input type="radio" name="submit_method" value="pdf"> 📄 生成PDF下载</label>
+  </div>
   <button class="submit-btn" onclick="submitForm()">提 交 问 卷</button>
 </div>
 
@@ -2918,8 +2956,11 @@ function submitForm() {
   
   // Save to localStorage
   localStorage.setItem('室内设计需求调查表', JSON.stringify(data));
-  
-  // Build mailto text
+
+  // Get selected submission method
+  const method = document.querySelector('input[name="submit_method"]:checked').value;
+
+  // Build formatted text content (shared by both methods)
   let body = '【室内设计需求调查表】\n\n';
   const sections = {
     '一、基本情况': ['客户姓名','客户电话','建筑面积','建筑地址','常住人口_大人','常住人口_老人','常住人口_儿童','常住人口_共计','职业_女业主','职业_女业主_备注','职业_男业主','职业_男业主_备注','房屋类型','房屋交付性质','居住性质','计划开工时间','计划入住时间','住宅使用方式','其他人员身份','女业主年龄','男业主年龄','其他人员年龄','特别成员','特别成员_备注','工作性质','做饭频率','留宿频率','留宿人员','留宿人员_备注'],
@@ -2945,7 +2986,7 @@ function submitForm() {
     '二十一、其他需求': ['风水','风水_备注','旧物沿用','旧物沿用_备注','生活习惯','家居活动','家居活动_备注','运动设备','运动设备_备注','其他设备','其他设备_备注','理想家关键词','理想周末','色彩偏好','色彩禁忌','材质偏好','材质偏好_备注','材质禁忌','材质禁忌_备注','门窗','门窗_备注','摄像头区域','其他电器','其他电器_备注','清洁工具','清洁工具_备注','居住遗憾','居住遗憾_备注'],
     '二十二、冲突取舍确认': ['冲突取消']
   };
-  
+
   for (const [section, keys] of Object.entries(sections)) {
     let sectionText = '';
     for (const key of keys) {
@@ -2957,7 +2998,7 @@ function submitForm() {
       body += section + '\n' + sectionText + '\n';
     }
   }
-  
+
   // Also include any keys not in sections
   for (const [k, v] of Object.entries(data)) {
     let found = false;
@@ -2966,12 +3007,146 @@ function submitForm() {
     }
     if (!found) body += k + '：' + v + '\n';
   }
-  
-  const subject = encodeURIComponent('室内设计需求调查表 - ' + (data['客户姓名'] || '未填写'));
-  const mailBody = encodeURIComponent(body);
-  window.location.href = 'mailto:357467320@qq.com?subject=' + subject + '&body=' + mailBody;
-  
-  showToast('问卷已保存，正在打开邮件发送...');
+
+  // Branch based on selected method
+  if (method === 'pdf') {
+    generatePDF(data, body);
+  } else {
+    // Email method (original logic)
+    const subject = encodeURIComponent('室内设计需求调查表 - ' + (data['客户姓名'] || '未填写'));
+    const mailBody = encodeURIComponent(body);
+    window.location.href = 'mailto:357467320@qq.com?subject=' + subject + '&body=' + mailBody;
+    showToast('问卷已保存，正在打开邮件发送...');
+  }
+}
+
+// Generate PDF
+function generatePDF(data, bodyText) {
+  showToast('正在生成PDF，请稍候...');
+
+  // Format date
+  const now = new Date();
+  const dateStr = now.getFullYear() + '-' +
+    String(now.getMonth() + 1).padStart(2, '0') + '-' +
+    String(now.getDate()).padStart(2, '0');
+  const timeStr = String(now.getHours()).padStart(2, '0') + ':' +
+    String(now.getMinutes()).padStart(2, '0');
+
+  // Build PDF HTML content
+  const sections = {
+    '一、基本情况': ['客户姓名','客户电话','建筑面积','建筑地址','常住人口_大人','常住人口_老人','常住人口_儿童','常住人口_共计','职业_女业主','职业_女业主_备注','职业_男业主','职业_男业主_备注','房屋类型','房屋交付性质','居住性质','计划开工时间','计划入住时间','住宅使用方式','其他人员身份','女业主年龄','男业主年龄','其他人员年龄','特别成员','特别成员_备注','工作性质','做饭频率','留宿频率','留宿人员','留宿人员_备注'],
+    '二、特别需求': ['总体需求','特别需求_女业主','特别需求_女业主_备注','特别需求_男业主','特别需求_男业主_备注','特别需求_女性长辈','特别需求_女性长辈_备注','特别需求_男性长辈','特别需求_男性长辈_备注','特别需求_女性儿童','特别需求_女性儿童_备注','特别需求_男性儿童','特别需求_男性儿童_备注','特别需求_其他成员_备注'],
+    '三、空间规划': ['空间规划','空间规划_备注'],
+    '四、设计风格': ['设计风格','设计风格_备注','色彩感觉','色彩感觉_备注','整体氛围','整体氛围_备注'],
+    '五、预算与取舍': ['硬装预算','主材定制预算','软装预算','电器预算','vs_风水功能','vs_风水功能2','vs_美观功能','vs_美观功能2','vs_采光隐私','vs_采光隐私2','vs_收纳开阔','vs_收纳开阔2','vs_女男','vs_女男2','vs_预算设计','vs_预算设计2'],
+    '六、全屋设备': ['空调系统','供暖系统','新风系统','水处理系统','水处理系统_备注','热水系统','智能家居'],
+    '七、设计需求': ['地板','瓷砖_公共区域','瓷砖_房间','瓷砖_卫生间','灯光','灯具','灯具_备注','卫生间吊顶','厨房吊顶','石膏线','石膏线_备注','窗帘','窗帘_备注'],
+    '八、玄关': ['玄关柜','鞋子数量','玄关收纳','玄关收纳_备注','玄关_其他需求'],
+    '九、客厅': ['客厅功能','影音需求','影音需求_备注','背景墙','沙发偏好','客厅软装','客厅_其他需求'],
+    '十、餐厅&厨房': ['餐桌款式','冰箱位置','冰箱外观','冰箱数量','餐厅收纳','岛台需求','岛台设计','岛台设计_备注','橱柜','厨房使用人身高','厨房格局','厨房人数','厨房电器','厨房电器_备注','五金拉篮','五金拉篮_备注','餐厅厨房_其他需求'],
+    '十一、主卫': ['主卫_设备','主卫_淋浴隔断','主卫_淋浴隔断_备注','主卫_花洒水龙头','主卫_储物','主卫_化妆','主卫_浴室柜','主卫_干湿分离','主卫_浴室镜','主卫_淋浴下沉','主卫_妇洗器','主卫_其他需求'],
+    '十二、公卫': ['公卫_设备','公卫_淋浴隔断','公卫_淋浴隔断_备注','公卫_花洒水龙头','公卫_储物','公卫_化妆','公卫_浴室柜','公卫_干湿分离','公卫_浴室镜','公卫_淋浴下沉','公卫_妇洗器','公卫_其他需求'],
+    '十三、洗衣&晾晒': ['洗衣机区域','洗衣机区域_备注','晒衣区域','晒衣区域_备注','晒衣封窗','洗衣设备','洗衣设备_备注','壁挂洗衣机区域','壁挂洗衣机区域_备注','晾衣架','晾衣架_备注','洗衣池','拖把池','熨烫区域','洗衣晾晒_其他需求'],
+    '十四、客厅阳台': ['客厅阳台_封闭','客厅阳台_功能','客厅阳台_功能_备注','客厅阳台_其他需求'],
+    '十五、厨房阳台': ['厨房阳台_封闭','厨房阳台_功能','厨房阳台_功能_备注','厨房阳台_其他需求'],
+    '十六、主卧': ['主卧_家具','主卧_床类型','主卧_床大小','主卧_床大小_备注','主卧_衣柜','主卧_挂衣','主卧_背景墙','主卧_飘窗','主卧_其他需求'],
+    '十七、次卧': ['次卧_家具','次卧_床类型','次卧_床大小','次卧_床大小_备注','次卧_衣柜','次卧_挂衣','次卧_背景墙','次卧_飘窗','次卧_其他需求'],
+    '十八、儿童房': ['儿童房_规划固定','儿童房_蒙氏','儿童房_家具','儿童房_床类型','儿童房_床大小','儿童房_床大小_备注','儿童房_衣柜','儿童房_挂衣','儿童房_背景墙','儿童房_飘窗','儿童房_其他需求'],
+    '十九、书房': ['书房_位置','书房_用途','书房_使用者','书房_电脑款式','书房_电脑数量','书房_兼容','书房_兼容_备注','书房_其他需求'],
+    '二十、全屋定制': ['定制柜子','定制柜子_备注','成品柜','成品柜_备注','柜子设计','柜子设计_备注','衣物收纳_少','衣物收纳_少_备注','衣物收纳_中','衣物收纳_中_备注','衣物收纳_多','衣物收纳_多_备注','常规需求','其他收纳_少','其他收纳_少_备注','其他收纳_中','其他收纳_中_备注','其他收纳_多','其他收纳_多_备注'],
+    '二十一、其他需求': ['风水','风水_备注','旧物沿用','旧物沿用_备注','生活习惯','家居活动','家居活动_备注','运动设备','运动设备_备注','其他设备','其他设备_备注','理想家关键词','理想周末','色彩偏好','色彩禁忌','材质偏好','材质偏好_备注','材质禁忌','材质禁忌_备注','门窗','门窗_备注','摄像头区域','其他电器','其他电器_备注','清洁工具','清洁工具_备注','居住遗憾','居住遗憾_备注'],
+    '二十二、冲突取舍确认': ['冲突取消']
+  };
+
+  let htmlContent = '<div style="font-family: SimHei, Microsoft YaHei, sans-serif; color: #333; line-height: 1.8; padding: 10px;">';
+  htmlContent += '<h1 style="text-align: center; font-size: 22px; color: #A0522D; border-bottom: 2px solid #A0522D; padding-bottom: 10px; margin-bottom: 20px;">室内设计需求调查表</h1>';
+
+  // Basic info summary
+  htmlContent += '<div style="margin-bottom: 16px; padding: 10px; background: #f9f6f3; border-radius: 6px;">';
+  htmlContent += '<p><strong>客户姓名：</strong>' + (data['客户姓名'] || '未填写') + '</p>';
+  htmlContent += '<p><strong>客户电话：</strong>' + (data['客户电话'] || '未填写') + '</p>';
+  htmlContent += '<p><strong>建筑面积：</strong>' + (data['建筑面积'] || '未填写') + '</p>';
+  htmlContent += '<p><strong>建筑地址：</strong>' + (data['建筑地址'] || '未填写') + '</p>';
+  htmlContent += '</div>';
+
+  // Sections
+  for (const [sectionName, keys] of Object.entries(sections)) {
+    let hasContent = false;
+    let sectionHtml = '';
+    for (const key of keys) {
+      if (data[key]) {
+        hasContent = true;
+        // Clean up key name for display
+        const displayKey = key.replace(/_/g, ' ');
+        sectionHtml += '<p style="margin: 4px 0; font-size: 13px;"><strong>' + displayKey + '：</strong>' + data[key] + '</p>';
+      }
+    }
+    if (hasContent) {
+      htmlContent += '<div style="margin-bottom: 14px; page-break-inside: avoid;">';
+      htmlContent += '<h2 style="font-size: 15px; color: #A0522D; border-left: 3px solid #A0522D; padding-left: 8px; margin-bottom: 8px;">' + sectionName + '</h2>';
+      htmlContent += sectionHtml;
+      htmlContent += '</div>';
+    }
+  }
+
+  // Include any keys not in sections
+  let extraHtml = '';
+  for (const [k, v] of Object.entries(data)) {
+    let found = false;
+    for (const keys of Object.values(sections)) {
+      if (keys.includes(k)) { found = true; break; }
+    }
+    if (!found) {
+      extraHtml += '<p style="margin: 4px 0; font-size: 13px;"><strong>' + k + '：</strong>' + v + '</p>';
+    }
+  }
+  if (extraHtml) {
+    htmlContent += '<div style="margin-bottom: 14px;">';
+    htmlContent += '<h2 style="font-size: 15px; color: #A0522D; border-left: 3px solid #A0522D; padding-left: 8px; margin-bottom: 8px;">其他信息</h2>';
+    htmlContent += extraHtml;
+    htmlContent += '</div>';
+  }
+
+  // Footer with date and time
+  htmlContent += '<div style="margin-top: 30px; padding-top: 14px; border-top: 1px solid #ddd; text-align: right; font-size: 12px; color: #999;">';
+  htmlContent += '<p>填写日期：' + dateStr + '</p>';
+  htmlContent += '<p>填写时间：' + timeStr + '</p>';
+  htmlContent += '</div>';
+
+  htmlContent += '</div>';
+
+  // Create hidden container
+  const container = document.createElement('div');
+  container.innerHTML = htmlContent;
+  container.style.position = 'fixed';
+  container.style.left = '-9999px';
+  container.style.top = '0';
+  container.style.width = '700px';
+  container.style.background = '#fff';
+  document.body.appendChild(container);
+
+  // File name
+  const customerName = data['客户姓名'] || '未填写';
+  const fileName = '设计需求调查_' + customerName + '_' + dateStr + '.pdf';
+
+  // Generate PDF
+  const opt = {
+    margin: [10, 10, 10, 10],
+    filename: fileName,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+  };
+
+  html2pdf().set(opt).from(container).save().then(function() {
+    document.body.removeChild(container);
+    showToast('问卷已保存为PDF，请通过微信发送给设计师（珲哥）');
+  }).catch(function(err) {
+    document.body.removeChild(container);
+    showToast('PDF生成失败，请尝试使用邮件发送方式');
+    console.error('PDF generation error:', err);
+  });
 }
 
 // Restore from localStorage on load
